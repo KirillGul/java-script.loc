@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="/favicon.ico">
+		<title>Строки</title>
+	</head>
+	<body>
+        <a href="/index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict"
+
+			alert(ucFirst("вася") == "Вася");
+
+			function ucFirst(str) {
+				if (!str) return str;
+
+				return str[0].toUpperCase() + str.substr(1);
+			}
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			console.log(checkSpam('buy ViAgRA now'));
+			console.log(checkSpam('free xxxxx'));
+			console.log(checkSpam("innocent rabbit"));
+
+			function checkSpam(str) {
+				let strLoweCase = str.toLowerCase();
+
+				if (strLoweCase.includes('viagra') || strLoweCase.includes('xxx')) {
+					return true;
+				}
+
+				return false;
+			}
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+			console.log(truncate("Всем привет!", 20));
+
+			function truncate(str, strLength) {
+				if (str.length > strLength) {
+					return str.slice(0, 19) + '...';
+				}
+
+				return str;
+			}
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+			alert(extractCurrencyValue('$120') === 120); // true
+
+			function extractCurrencyValue(currency) {
+				return +currency.slice(1);
+			}
+
+		</script>
+
+	</body>
+</html>
