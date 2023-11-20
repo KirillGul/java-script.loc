@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="/favicon.ico">
+		<title>Массивы</title>
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict"
+
+			let fruits = ["Яблоки", "Груша", "Апельсин"];
+
+			// добавляем новое значение в "копию"
+			let shoppingCart = fruits;
+			shoppingCart.push("Банан");
+
+			// что в fruits?
+			//alert( fruits.length ); // 4
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+
+			let styles = ["Джаз", "Блюз"];
+
+			styles.push('Рок-н-ролл');
+			console.log(styles);
+
+			let middle = Math.floor(styles.length / 2);
+			styles[middle] = 'Классика';
+			console.log(styles);
+
+			console.log(styles.shift());
+
+			styles.unshift('Рэп', 'Регги');
+			console.log(styles);
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			/*
+			let arr = ["a", "b"];
+
+			arr.push(function() {
+				alert(this);
+			});
+
+			arr[2](); //вернёт все элементы разделенные запятымиы
+			*/
+		</script>
+
+		<!-- //4 -->
+		<script>
+
+			console.log(sumInput());
+
+			function sumInput() {
+				let arr = [0];
+				let num;
+				let sum = 0;
+
+				do {
+					num = prompt('Введите число: ', '');
+
+					if (num === null || num === '') break;
+
+					arr.push(+num);
+				} while(true)
+
+				for (let value of arr) {
+					sum += value;
+				}
+
+				return sum;
+			}
+
+		</script>
+
+		<!-- //5 -->
+		<script>
+
+			console.log(getMaxSubSum([-1, 2, 3, -9])); // 5 (сумма выделенных элементов)
+			console.log(getMaxSubSum([2, -1, 2, 3, -9])); // 6
+			console.log(getMaxSubSum([-1, 2, 3, -9, 11])); // 11
+			console.log(getMaxSubSum([-2, -1, 1, 2])); // 3
+			console.log(getMaxSubSum([100, -9, 2, -3, 5])); // 100
+			console.log(getMaxSubSum([1, 2, 3])); // 6 (берём все)
+
+			function getMaxSubSum(arr) {
+
+				let sum = 0;
+				let sumTemp = 0;
+
+				for(let i = 0; i <= arr.length - 1; i++) {
+					
+					if (arr[i] < 0 && sumTemp == 0) {
+						continue;
+					}
+
+					if (sumTemp + arr[i] < arr[i]) {
+						sumTemp = arr[i];	
+					} else {
+						sumTemp += arr[i];
+					}					
+
+					if (sum < sumTemp) {
+						sum = sumTemp;
+					}
+				}
+
+				return sum;
+			}
+
+		</script>
+
+	</body>
+</html>

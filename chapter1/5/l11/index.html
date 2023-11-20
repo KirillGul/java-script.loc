@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="/favicon.ico">
+		<title>Дата и время</title>
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict"
+
+			let date = new Date(2012, 2, 20, 3, 12);
+
+			//alert(date);
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			
+			let date_2 = new Date(2012, 0, 3);  // 3 января 2012 года
+			//alert(getWeekDay(date_2));        // нужно вывести "ВТ"
+
+			function getWeekDay(date) {
+				nameWeekDays = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+				return nameWeekDays[date.getDay()];
+			}
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			
+			let date_3 = new Date(2012, 0, 1);  // 3 января 2012 года
+			//alert(getLocalDay(date_3));       // вторник, нужно показать 2
+
+			function getLocalDay(date) {
+				nameWeekDaysEuro = {
+					1: 'пн', 
+					2: 'вт',
+					3: 'ср',
+					4: 'чт',
+					5: 'пт',
+					6: 'сб',
+					7: 'вс'
+				};
+				
+				return date.getDay() == 0 ? nameWeekDaysEuro['7'] : nameWeekDaysEuro[date.getDay()];
+			}
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+			
+			let date_4 = new Date(2015, 0, 2);
+
+			//alert(date_4);
+			//alert( getDateAgo(date_4, 1) ); // 1, (1 Jan 2015)
+			//alert( getDateAgo(date_4, 2) ); // 31, (31 Dec 2014)
+			//alert( getDateAgo(date_4, 365) ); // 2, (2 Jan 2014)
+
+			function getDateAgo(date, minusDays) {
+				let newDate = new Date();
+				newDate.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+				newDate.setDate(newDate.getDate() - minusDays);
+
+				return newDate;	
+			}
+
+		</script>
+
+		<!-- //5 -->
+		<script>
+			
+			let year = 2012;
+			let month = 1;
+
+			//alert(getLastDayOfMonth(year, month));
+
+			function getLastDayOfMonth(year, month) {
+				let date = new Date(year, month + 1, 0);
+				return date.getDate();
+			}
+
+		</script>
+
+		<!-- //6 -->
+		<script>
+			
+			//alert(getSecondsToday());
+
+			function getSecondsToday() {
+				let dateDay0 = new Date();
+				dateDay0.setHours(0,0,0,0);
+
+				return Math.round((Date.now() - dateDay0.getTime()) / 1000);
+			}
+
+		</script>
+
+		<!-- //7 -->
+		<script>
+			
+			//alert(getSecondsToTomorrow());
+
+			function getSecondsToTomorrow() {
+				let dateNow = Date.now();
+				let dateTomorrow = new Date();
+				dateTomorrow.setDate(dateTomorrow.getDate() + 1);
+				dateTomorrow.setHours(0, 0, 0, 0);
+				let diff = Math.round((dateTomorrow.getTime() - dateNow) / 1000);
+				return diff;
+			}
+
+		</script>
+
+		<!-- //8 -->
+		<script>
+			
+			alert( formatDate(new Date(new Date - 1)) ); // "прямо сейчас"
+
+			alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+
+			alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+
+			// вчерашняя дата вроде 31.12.2016, 20:00
+			alert( formatDate(new Date(new Date - 86400 * 1000)) );
+
+			function formatDate(date) {
+				let nowDate = new Date();
+
+				diff = Math.round((nowDate.getTime() - date.getTime()) / 1000);
+
+				if (diff < 1) {
+					return 'прямо сейчас';
+				} 
+				
+				if ( diff < 60) {
+					return diff + ' сек. назад';
+				} 
+				
+				if (diff < 3600) {
+					return (Math.round(diff / 60)) + ' мин. назад';
+				}
+
+				// отформатировать дату
+				// добавить ведущие нули к единственной цифре дню/месяцу/часам/минутам
+				let d = date;
+				d = [
+					'0' + d.getDate(),
+					'0' + (d.getMonth() + 1),
+					'' + d.getFullYear(),
+					'0' + d.getHours(),
+					'0' + d.getMinutes()
+				].map(component => component.slice(-2)); // взять последние 2 цифры из каждой компоненты
+
+				// соединить компоненты в дату
+				return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+			}
+
+		</script>
+
+	</body>
+</html>
