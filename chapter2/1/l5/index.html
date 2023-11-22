@@ -5,13 +5,31 @@
 		<title>Свойства узлов: тип, тег и содержимое</title>
 	</head>
 	<body>
-		<a href="../index.html">Назад</a>
+		<a href="../index.html" class="www">Назад</a>
 
 		<!-- //1 -->
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>
+				<ul>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+		</ul>
 		<script>
 			'use strict'
 
-			
+			let elems = document.querySelectorAll('li');
+			for (let li of elems) {
+ 				let title = li.firstChild.data;
+
+  				// переменная title содержит текст элемента <li>
+				console.log(title);
+			}
+
+			console.log(elems.length);
 
 		</script>
 
