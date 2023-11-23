@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Изменение документа</title>
+	</head>
+	<body>
+		<a href="../index.html" class="www">Назад</a>
+
+		<!-- //1 -->
+		<div id="elem"></div>
+
+		<script>
+		'use strict'
+
+		let text = '<b>Текст</b>';
+
+		//elem.append(document.createTextNode(text)); //Да
+		//elem.innerHTML = text;
+		elem.textContent = text; //Да
+
+		</script>
+
+		<!-- //2 -->
+		<ol id="elem2">
+			<li>Привет</li>
+			<li>Мир</li>
+		</ol>
+
+		<script>
+
+			function clear(elem) {
+				while (elem.firstChild) {
+					elem.firstChild.remove();
+				}
+			}
+
+			clear(elem2); //очищает список
+
+		</script>
+
+		<!-- //3 -->
+		<table id="table">
+			aaa
+			<tr>
+			  <td>Тест</td>
+			</tr>
+		  </table>
+
+		<script>
+
+			alert(table); // таблица, как и должно быть
+			table.remove(); // почему в документе остался текст "ааа"?
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+
+			let ul = document.createElement('ul');
+			document.body.append(ul);
+
+			let textPromt = prompt('Введите содержимое списка:', '');
+			while (textPromt != null) {
+				elemLi = document.createElement('li');
+				elemLi.textContent = textPromt;
+				ul.append(elemLi);
+				textPromt = prompt('Введите содержимое списка:', '');
+			}
+			
+		</script>
+
+		<!-- //5 -->
+		<div id="container"></div>
+
+		<script>
+
+			let data = {
+				"Рыбы": {
+					"форель": {},
+					"лосось": {}
+				},
+				"Деревья": {
+					"Огромные": {
+						"секвойя": {},
+						"дуб": {}
+					},
+					"Цветковые": {
+						"яблоня": {},
+						"магнолия": {}
+					}
+				}
+			};
+
+			let container = document.getElementById('container');
+			createTree(container, data); // создаёт дерево в контейнере
+
+			function createTree(container, data) {
+				for (let elem in data) {
+					if (elem.length !== 0) {
+						let ul = document.createElement
+					}
+				}
+			}
+			
+		</script>
+
+	</body>
+</html>
