@@ -96,11 +96,18 @@
 			createTree(container, data); // создаёт дерево в контейнере
 
 			function createTree(container, data) {
+				let ul = document.createElement('ul');
+
 				for (let elem in data) {
 					if (elem.length !== 0) {
-						let ul = document.createElement
+						let li = document.createElement('li');
+						li.textContent = elem;
+						ul.append(li);
 					}
 				}
+
+				container.append(ul);
+
 			}
 			
 		</script>
