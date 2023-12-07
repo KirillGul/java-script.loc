@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Объект функции, NFE</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>			
+			"use strict"
+
+			function makeCounter() {
+				let count = 0;
+
+				function counter() {
+					return count++;
+				}
+
+				counter.set = value => count = value;
+
+				counter.decrease = () => count--;
+
+				return counter;
+			}
+
+			let counter = makeCounter();
+
+			alert(counter());
+			counter.set(10);
+			alert(counter());
+
+		</script>
+
+	</body>
+</html>
