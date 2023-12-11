@@ -60,12 +60,36 @@
 			let f1000 = delay(f, 1000);
 			let f1500 = delay(f, 1500);
 
-			f1000("test1"); // показывает "test" после 1000 мс
-			f1500("test", "1"); // показывает "test" после 1500 мс
+			//f1000("test1"); // показывает "test" после 1000 мс
+			//f1500("test", "1"); // показывает "test" после 1500 мс
 
 		</script>
 
 		<!-- //3 -->
+		<script>
+
+			function f(str) {
+				alert(str);
+			}
+
+			//f = debounce(f, 1000);
+
+			//f('Вызов 1');
+			//setTimeout( () => f("Вызов 2"), 1200);
+			//setTimeout( () => f("b"), 200);
+			//setTimeout( () => f("c"), 3000);
+
+			function debounce(func, ms) {
+				let timeout;
+				return function() {
+					clearTimeout(timeout);
+					timeout = setTimeout(() => func.apply(this, arguments), ms);
+				};
+			}
+
+		</script>
+
+		<!-- //4 -->
 		<script>
 
 			
