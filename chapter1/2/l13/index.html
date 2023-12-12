@@ -13,80 +13,89 @@
 
 	<!-- //1 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let i = 3;
-
+		/*
 		while (i) {
-			alert( i-- ); //1
+			alert( i-- ); //3 2 1
 		}
-
+		*/
 	</script>
     
 	<!-- //2 -->
 	<script>
+		'use strict';
+		
 		let i_2 = 0;
-		while (++i_2 < 5) alert(i_2); //1 2 3 4
-
-		while (i_2++ < 5) alert(i_2); //1 2 3 4 5
+		//while (++i_2 < 5) alert(i_2); //1 2 3 4
+		//while (i_2++ < 5) alert(i_2); //1 2 3 4 5
 
 	</script>
 
 	<!-- //3 -->
 	<script>
-
+		'use strict';
+		/*
 		for(let i_3 = 2; i_3 <= 10; i_3++) {
 			if (i_3 % 2 == 0) {
 				alert(i_3);
 			}			
 		}
+		*/
 
 	</script>
 
 	<!-- //4 -->
 	<script>
+		'use strict';
 
 		let i_4 = 0;
+		/*
 		while (i_4 < 3) {
 			alert( `number ${i_4}!` );
 			i_4++;
 		}
+		*/
 
 	</script>
 
 	<!-- //5 -->
 	<script>
+		'use strict';
 
 		let num;
+
+		/*
 		do {
 			num = prompt('Введите число больше 100: ', 0);
 		} while (num <= 100 && num);
+		*/
 
 	</script>
 	
 	<!-- //6 -->
 	<script>
+		'use strict';
 
 		let num_6;
-		let flag;
 
+		/*
 		do {
 			num_6 = prompt('Введите положительное целое число для интервала простых чисел: ', 0);
-		} while (num_6 <= 0);
+		} while (num_6 <= 0 && num_6);
 
+		next:
 		for (let i = 2; num_6 >= i; i++) {
-			let flag = 1;
-
 			for (let k = (i - 1); k >= 2; k--) {
 				if (i % k == 0) {
-					flag = 0;
-					break;
+					break next;
 				}
 			}
-			if (flag) {
-				alert(i);
-			}
+
+			alert(i);
 		}
+		*/
 
 	</script>
 

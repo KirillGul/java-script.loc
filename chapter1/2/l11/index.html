@@ -13,15 +13,15 @@
 
 	<!-- //1 -->
 	<script>
-		'use strict'
+		'use strict';
 
-		alert( null || 2 || undefined ); //2
+		alert( null || 2 || undefined ); //2 - выбирает первой true
 
 	</script>
 
 	<!-- //2 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		alert( alert(1) || 2 || alert(3) ); //1 2
 
@@ -29,7 +29,7 @@
 
 	<!-- //3 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		alert( 1 && null && 2 ); //null
 
@@ -37,7 +37,7 @@
 
 	<!-- //4 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		alert( null || 2 && 3 || 4 ); //3
 
@@ -45,12 +45,12 @@
 
 	<!-- //5 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let value = NaN;
 
-		value &&= 10;
-		value ||= 20;
+		value &&= 10; //если value ложно присвоить 10
+		value ||= 20; //если value истинно присвоить 20
 		value &&= 30;
 		value ||= 40;
 
@@ -60,7 +60,7 @@
 
 	<!-- //6 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let age = 15;
 
@@ -72,21 +72,21 @@
 
 	<!-- //7 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		if (age < 14 || age > 90) {
-			alert('Переменная age находиться в не диапазона от 14 до 90');
+			alert('Переменная age находиться вне диапазона от 14 до 90');
 		}
 
 		if (!(age >= 14 && age <= 90)) {
-			alert('Переменная age находиться в не диапазона от 14 до 90');
+			alert('Переменная age находиться вне диапазона от 14 до 90');
 		}
 
 	</script>
 
 	<!-- //8 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		if (-1 || 0) alert( 'first' ); //Да -1
 		if (-1 && 0) alert( 'second' ); //Нет 0
@@ -96,7 +96,7 @@
 
 	<!-- //9 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let login;
 		let password;

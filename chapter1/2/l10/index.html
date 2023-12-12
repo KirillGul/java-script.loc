@@ -11,9 +11,19 @@
 <body>
 	<a href="../index.html">Назад</a>
 
+	<!-- //1 -->
+	<script>
+		'use strict';
+
+		if ("0") { //true
+			alert( 'Привет' );
+		}
+
+	</script>
+
 	<!-- //2 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let nameJavaScript;
 
@@ -29,7 +39,7 @@
 
 	<!-- //3 -->
 	<script>
-		'use strict'
+		'use strict';
 
 		let signNumber;
 
@@ -47,7 +57,9 @@
 
 	<!-- //4 -->
 	<script>
-		'use strict'
+		'use strict';
+
+		let a = 1, b = 2;
 
 		let result = (a + b < 4) ? 'Мало' : 'Много';
 
@@ -55,12 +67,16 @@
 
 	<!-- //5 -->
 	<script>
-		'use strict'
+		'use strict';
+
+		let login = prompt('Введите ваш логин (Сотрудник, Начальник)', '');
 
 		let message = (login == 'Сотрудник') ? 'Привет' :
 		(login == 'Директор') ? 'Здравствуйте' :
 		(login == '') ? 'Нет логина' : 
 		'';
+
+		debugger;
 
 	</script>
 
