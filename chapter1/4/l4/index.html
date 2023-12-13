@@ -11,23 +11,26 @@
 
 		<!-- //1 -->
 		<script>
-			"use strict"
+			'use strict';
 
 			function makeUser() {
 				return {
 					name: "John",
-					ref: this
+					ref: this,
 				};
 			}
 
 			let user = makeUser();
 
-			alert( user.ref.name ); // Каким будет результат? !Ошибка!
+			alert(user.ref); //undefined
+			alert(user.ref?.name); //Каким будет результат? !Ошибка!, т.к. ref функции равен undefined
 
 		</script>
 
 		<!-- //2 -->
 		<script>
+			"use strict";
+
 			let calculator = {
 				x: null,
 				y: null,
@@ -46,13 +49,14 @@
 			};
 
 			calculator.read();
-			alert( calculator.sum() );
-			alert( calculator.mul() );
+			alert(calculator.sum());
+			alert(calculator.mul());
 
 		</script>
 
 		<!-- //3 -->
 		<script>
+			"use strict";
 
 			let ladder = {
 				step: 0,
@@ -64,13 +68,13 @@
 					this.step--;
 					return this;
 				},
-				showStep: function() { // показывает текущую ступеньку
+				showStep: function() { //показывает текущую ступеньку
 					alert( this.step );
 					return this;
 				}
 			};
 
-			ladder.up().up().down().showStep().down().showStep(); // показывает 1 затем 0
+			ladder.up().up().down().showStep().down().showStep(); //показывает 1 затем 0
 
 		</script>
 

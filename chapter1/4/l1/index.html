@@ -11,6 +11,8 @@
 
 		<!-- //1 -->
 		<script>
+			'use strict';
+
 			let user = {};
 			user.name = 'John';
 			user.surname = 'Smith';
@@ -22,6 +24,8 @@
 
 		<!-- //2 -->
 		<script>
+			'use strict';
+
 			let testObj2 = {};
 			let testObj3 = {
 				name: 'John',
@@ -45,6 +49,7 @@
 
 		<!-- //3 -->
 		<script>
+			'use strict';
 
 			const user2 = {
 				name: "John"
@@ -57,11 +62,12 @@
 
 		<!-- //4 -->
 		<script>
+			'use strict';
 
 			let salaries = {
-			John: 100,
-			Ann: 160,
-			Pete: 130
+				John: 100,
+				Ann: 160,
+				Pete: 130,
 			}
 
 			let sum;
@@ -83,12 +89,13 @@
 
 		<!-- //5 -->
 		<script>
+			'use strict';
 
-			// до вызова функции
+			//до вызова функции
 			let menu = {
-			width: 200,
-			height: 300,
-			title: "My menu"
+				width: 200,
+				height: 300,
+				title: "My menu",
 			};
 
 			multiplyNumeric(menu);
@@ -104,11 +111,10 @@
 
 			function multiplyNumeric(obj) {
 				for (let key in obj) {
-					if (typeof(obj[key]) == 'number') {
+					if (typeof(obj[key]) === 'number') {
 						obj[key] = obj[key] * 2;
 					}
 				}
-				
 			}
 
 		</script>
