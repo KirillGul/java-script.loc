@@ -11,9 +11,11 @@
 
 		<!-- //1 -->
 		<script>			
-			"use strict"
+			"use strict";
 
-			let company = { // тот же самый объект, сжатый для краткости
+			//тест
+			/*
+			let company = {
 				sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
 				development: {
 					sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
@@ -34,14 +36,15 @@
 			}
 
 			alert(sumSalaries(company)); // 6700
+			*/
 
 			//alert(sumTo(1)); //1
 			//alert(sumTo(2)); //2 + 1 = 3
-			//sumTo(3); 3 + 2 + 1 = 6
-			//sumTo(4); // 4 + 3 + 2 + 1 = 10
-			//alert(sumTo(100)); // = 100 + 99 + ... + 2 + 1 = 5050
+			//sumTo(3); //3 + 2 + 1 = 6
+			//sumTo(4); //4 + 3 + 2 + 1 = 10
+			//alert(sumTo(100)); //100 + 99 + ... + 2 + 1 = 5050
 
-			//Решение 1
+			//Решение 1 - перебором
 			/*
 			function sumTo(num) {
 				let sum = 0;
@@ -52,7 +55,7 @@
 			}
 			*/
 
-			//Решение 2
+			//Решение 2 - рекурсией
 			
 			function sumTo(num) {
 				if (num === 1) {
@@ -63,7 +66,7 @@
 			}
 			
 
-			//Решение 3
+			//Решение 3 - через арифметический прогрессию
 			/*
 			function sumTo(num) {
 				return (1 + num) / 2 * num;
@@ -72,7 +75,8 @@
 		</script>
 
 		<!-- //2 -->
-		<script>			
+		<script>
+			"use strict";		
 
 			//alert(factorial(1)); //1
 			//alert(factorial(5)); //120
@@ -84,7 +88,8 @@
 		</script>
 		
 		<!-- //3 -->
-		<script>			
+		<script>
+			"use strict";		
 
 			//alert(fib(2)); //2
 			//alert(fib(7)); //13
@@ -119,7 +124,8 @@
 		</script>
 
 		<!-- //4 -->
-		<script>			
+		<script>
+			"use strict";		
 
 			let list = {
 				value: 1,
@@ -161,7 +167,8 @@
 		</script>
 
 		<!-- //5 -->
-		<script>			
+		<script>
+			"use strict";
 
 			printListEnd(list);
 

@@ -42,9 +42,7 @@
 			//alert(arr); // 5,3,8,1 (без изменений)
 
 			function filterRange(arr, min, max) {
-				return arr.filter(element => {
-					return element >= min && element <= max;
-				});
+				return arr.filter(element => { element >= min && element <= max; });
 			}
 
 		</script>
@@ -75,7 +73,7 @@
 
 			let arr_4 = [5, 2, 1, -10, 8];
 
-			arr_4.sort( (a, b) => a > b ? -1 : 1);
+			arr_4.sort((a, b) => a > b ? -1 : 1);
 
 			//alert(arr_4); //8, 5, 2, 1, -10
 
@@ -93,7 +91,7 @@
 			//alert(arr_5); // HTML, JavaScript, CSS (без изменений)
 
 			function copySorted(array) {
-				return array.slice().sort( (a, b) => a.localeCompare(b));;
+				return array.slice().sort((a, b) => a.localeCompare(b));;
 			}
 
 		</script>
@@ -132,7 +130,7 @@
 			powerCalc.addMethod("**", (a, b) => a ** b);
 
 			let result = powerCalc.calculate("2 ** 3");
-			alert( result ); // 8
+			alert(result); // 8
 
 		</script>
 
@@ -148,11 +146,9 @@
 
 			let names = users.map(user => {
 				return user.name;
-			}
+			});
 
-			);
-
-			alert( names ); // Вася, Петя, Маша
+			alert(names); // Вася, Петя, Маша
 
 		</script>
 
@@ -160,11 +156,11 @@
 		<script>
 			"use strict";
 
-			let vasya8 = { name: "Вася", surname: "Пупкин", id: 1 };
-			let petya8 = { name: "Петя", surname: "Иванов", id: 2 };
-			let masha8 = { name: "Маша", surname: "Петрова", id: 3 };
+			let vasya8 = {name: "Вася", surname: "Пупкин", id: 1};
+			let petya8 = {name: "Петя", surname: "Иванов", id: 2};
+			let masha8 = {name: "Маша", surname: "Петрова", id: 3};
 
-			let users8 = [ vasya8, petya8, masha8 ];
+			let users8 = [vasya8, petya8, masha8];
 
 			let usersMapped = users8.map(user => ({
 				fullName: user.name + ' ' + user.surname,
@@ -179,8 +175,8 @@
 			]
 			*/
 
-			alert( usersMapped[0].id ) // 1
-			alert( usersMapped[0].fullName ) // Вася Пупкин
+			alert(usersMapped[0].id) //1
+			alert(usersMapped[0].fullName) //Вася Пупкин
 
 		</script>
 
@@ -188,11 +184,11 @@
 		<script>
 			"use strict";
 
-			let vasya9 = { name: "Вася", age: 25 };
-			let petya9 = { name: "Петя", age: 30 };
-			let masha9 = { name: "Маша", age: 28 };
+			let vasya9 = {name: "Вася", age: 25};
+			let petya9 = {name: "Петя", age: 30};
+			let masha9 = {name: "Маша", age: 28};
 
-			let arr9 = [ vasya9, petya9, masha9 ];
+			let arr9 = [vasya9, petya9, masha9];
 
 			sortByAge(arr9);
 
@@ -252,13 +248,13 @@
 		<script>
 			"use strict";
 
-			let vasya11 = { name: "Вася", age: 25 };
-			let petya11 = { name: "Петя", age: 30 };
-			let masha11 = { name: "Маша", age: 29 };
+			let vasya11 = {name: "Вася", age: 25};
+			let petya11 = {name: "Петя", age: 30};
+			let masha11 = {name: "Маша", age: 29};
 
-			let arr11 = [ vasya11, petya11, masha11 ];
+			let arr11 = [vasya11, petya11, masha11];
 
-			alert( getAverageAge(arr11) ); // (25 + 30 + 29) / 3 = 28
+			alert(getAverageAge(arr11)); // (25 + 30 + 29) / 3 = 28
 
 			function getAverageAge(arr) {
 				let sum;
@@ -290,7 +286,7 @@
 			"харе", "харе", "кришна", "кришна", ":-O"
 			];
 
-			alert( unique(strings) ); // кришна, харе, :-O
+			alert(unique(strings)); // кришна, харе, :-O
 
 		</script>
 
@@ -299,9 +295,9 @@
 			"use strict";
 
 			let users13 = [
-			{id: 'john', name: "John Smith", age: 20},
-			{id: 'ann', name: "Ann Smith", age: 24},
-			{id: 'pete', name: "Pete Peterson", age: 31},
+				{id: 'john', name: "John Smith", age: 20},
+				{id: 'ann', name: "Ann Smith", age: 24},
+				{id: 'pete', name: "Pete Peterson", age: 31},
 			];
 
 			let usersById = groupById(users13);

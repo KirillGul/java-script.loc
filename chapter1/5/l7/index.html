@@ -11,32 +11,27 @@
 
 		<!-- //1 -->
 		<script>
-			"use strict"
+			"use strict";
 
 			function unique(arr) {
-				let set = new Set();
-
-				for (let value of arr) {
-					set.add(value);
-				}
-
-				return Array.from(set);
+				return Array.from(new Set(arr));
 			}
 
 			let values = ["Hare", "Krishna", "Hare", "Krishna",
 			"Krishna", "Krishna", "Hare", "Hare", ":-O"
 			];
 
-			alert( unique(values) ); // Hare,Krishna,:-O
+			alert(unique(values)); // Hare,Krishna,:-O
 
 		</script>
 
 		<!-- //2 -->
 		<script>
+			"use strict";
 
 			let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-			alert( aclean(arr) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+			alert(aclean(arr)); // "nap,teachers,ear" или "PAN,cheaters,era"
 
 			function aclean(arr) {
 				let newArr = [];
@@ -61,6 +56,7 @@
 
 		<!-- //3 -->
 		<script>
+			"use strict";
 
 			let map = new Map();
 
