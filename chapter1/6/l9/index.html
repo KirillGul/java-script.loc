@@ -17,7 +17,7 @@
 				alert(a + b);
 			}
 
-			work = spy(work);
+			//work = spy(work);
 
 			function spy(func) {
 				f.calls = [];
@@ -48,8 +48,8 @@
 			}
 
 			// создаём обёртки
-			let f1000 = delay(f, 1000);
-			let f1500 = delay(f, 1500);
+			//let f1000 = delay(f, 1000);
+			//let f1500 = delay(f, 1500);
 
 			function delay(func, ms) {
 				return function() {
@@ -69,7 +69,7 @@
 				alert(x);
 			}
 
-			let fDeb = debounce(f3, 1000);
+			//let fDeb = debounce(f3, 1000);
 
 			//fDeb("a");
 			//setTimeout(() => fDeb("b"), 200);
@@ -95,11 +95,11 @@
 			}
 
 			// f1000 передаёт вызовы f максимум раз в 1000 мс
-			let f1000_4 = throttle(f4, 1000);
+			//let f1000_4 = throttle(f4, 1000);
 
-			f1000_4(1); //показывает 1
-			f1000_4(2); //(ограничение, 1000 мс ещё нет)
-			f1000_4(3); //(ограничение, 1000 мс ещё нет)
+			//f1000_4(1); //показывает 1
+			//f1000_4(2); //(ограничение, 1000 мс ещё нет)
+			//f1000_4(3); //(ограничение, 1000 мс ещё нет)
 
 			function throttle(func, ms) {
 				let timerId;
