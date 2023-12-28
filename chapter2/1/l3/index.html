@@ -84,16 +84,9 @@
 		<script>
 
 			let i = 0;
-			one: 
 			for(let row of table.rows) {
-				for (let cell of row.cells) {
-					if (cell.cellIndex == i) {
-						cell.style.backgroundColor = 'red';
-						i++;
-						continue one;
-					}
-					
-				}
+				row.cells[i].style.backgroundColor = 'red';
+				i++;
 			}
 
 		</script>
