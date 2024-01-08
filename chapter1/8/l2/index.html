@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>F.prototype</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>			
+			"use strict";
+
+			function Rabbit() {}
+				
+			Rabbit.prototype = {
+				eats: true
+			};
+
+			let rabbit = new Rabbit();
+
+			//alert(rabbit.eats); // true //- покажет true
+
+			//1
+			Rabbit.prototype = {}; //null
+			//alert(rabbit.eats); //true, т.к. prototype изменили после создания объекта
+			
+			//2
+			Rabbit.prototype.eats = false;
+			//alert(rabbit.eats); //true, т.к. prototype изменили после создания объекта
+
+			//3
+			delete rabbit.eats;
+			//alert(rabbit.eats); //true, т.к. удаляется несуществующее свойство у объекта, а у объекта прототипа оно осталось
+
+			//4
+			delete Rabbit.prototype.eats;
+			//alert(rabbit.eats); //true, т.к. prototype изменили после создания объекта
+		</script>
+
+		<!-- //2 -->
+		<script>			
+			"use strict";
+
+			//Рабочий вариант
+			function Obj(name) {
+				this.name = name;
+			}
+
+			let obj = new Obj('XXX');
+			alert(obj.name);
+
+			let obj2 = new obj.constructor('PPP');
+			alert(obj2.name);
+
+			//Не рабочий вариант
+			function Obj1(name) {
+				this.name = name;
+			}
+
+			Obj1.prototype = {};
+
+			let obj3 = new Obj1('XXX');
+			alert(obj3.name);
+
+			let obj4 = new obj3.constructor('PPP');
+			alert(obj4.name);
+
+		</script>
+
+	</body>
+</html>
