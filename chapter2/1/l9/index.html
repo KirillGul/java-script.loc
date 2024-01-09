@@ -10,7 +10,7 @@
 		<a href="../index.html" class="www">Назад</a>
 
 		<!-- //1 -->
-		<div id="one" style="position:absolute; top: 100px; left: 50px; height: 150px; width: 150px; overflow: auto; padding: 5px;">
+		<div id="one" style="top: 100px; left: 50px; height: 150px; width: 150px; overflow: auto; padding: 5px;">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ut, obcaecati nulla non repellendus inventore adipisci quae a reiciendis tenetur ea ab? 
 			Voluptatum repellendus vel sed quae expedita voluptates accusantium itaque fugiat sapiente sit similique velit eos, doloremque, ex id a aperiam perferendis porro. 
 			Ipsam sed rerum minima illo molestiae.
@@ -62,7 +62,7 @@
 
 			div2.remove();
 
-			alert(widthScroll);
+			//alert(widthScroll);
 
 		</script>
 
@@ -82,6 +82,9 @@
 		
 			#ball {
 			  position: absolute;
+			  width: 40px;
+			  height: 40px;
+
 			}
 		  </style>
 
@@ -91,21 +94,29 @@
 			let field = document.getElementById('field');
 			let ball = document.getElementById('ball');
 
-			ball.style.top = field.offsetHeight / 2 + 'px';
-			ball.style.left = field.offsetWidth / 2 + 'px';
-			//console.log(field.offsetWidth);
+			ball.style.top = field.clientHeight / 2  - ball.offsetHeight / 2 + 'px';
+			ball.style.left = field.clientWidth / 2 - ball.offsetWidth / 2 + 'px';
+			console.log(field.offsetHeight);
 
 		</script>
 
-		<div id="elem-con">elem</div>
-		<script>
-			'use strict';
+		<!-- //4 -->
+		<div>
+			<p>В чём отличие между getComputedStyle(elem).width и elem.clientWidth?</p>
+			<p>Укажите хотя бы 3 отличия, лучше – больше.</p>
+			<ul>
+				<li>getComputedStyle(elem).width - окончательное значение с учетом всех стилей, а elem.clientWidth - текущее (возможно) измененное значение</li>
+				<li>elem.clientWidth - это ширина вместе с padding</li>
+				<li>getComputedStyle(elem).width - зависит от значения box-sizing</li>
+				<li>getComputedStyle(elem).width - может быть заданно как auto</li>
+				<li>elem.clientWidth\clientHeight - учитывают ширину без полосы прокрутки, т.е. фактически отнимая от ширины элемента, ширину полосы прокрутки</li>
+				<li>getComputedStyle(elem).width - не которые браузеры по разному возвращают значение (с учётом или без учета полосы прокрутки)</li>
+			</ul>
+		</div>
 
-			let e = window['elem-con'];
+			
 
-			console.log(window['elem-con'].innerText);
-			debugger
-		</script>
+		
 
 	</body>
 </html>
