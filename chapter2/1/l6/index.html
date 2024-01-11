@@ -15,14 +15,15 @@
 		<script>
 			'use strict'
 
-			let widgetName = document.body.querySelector('div[data-widget-name]');
-
-			alert(widgetName.innerText);
+			let elem = document.body.querySelector('div[data-widget-name]');
+			console.log(elem);
 
 		</script>
 
 		<!-- //2 -->
+		<br>
 		<a name="list">the list</a>
+
 		<ul>
 			<li><a href="http://google.com">http://google.com</a></li>
 			<li><a href="/tutorial">/tutorial.html</a></li>
@@ -30,18 +31,13 @@
 			<li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
 			<li><a href="http://nodejs.org">http://nodejs.org</a></li>
 			<li><a href="http://internal.com/test">http://internal.com/test</a></li>
-		</ul>
+		  </ul>
 
 		<script>
-			// добавление стиля для одной ссылки
-			let links = document.querySelectorAll('a[href]');
+			'use strict'
 
-			for (let link of links) {
-				let hrefAttr = link.getAttribute('href');
-				if (hrefAttr.includes('://') && !hrefAttr.startsWith('http://internal.com')) {
-					link.style.color = 'orange';
-					//console.log(link.getAttribute('href'));
-				}
+			for(let link of document.querySelectorAll('a[href*="://"]')) {
+				!link.href.startsWith('http://internal.com') ? link.style.color = 'orange' : null;
 			}
 			
 		</script>
