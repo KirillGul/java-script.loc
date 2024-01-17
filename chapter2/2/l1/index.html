@@ -78,31 +78,33 @@
 			
 			field.onclick = function(event) {
 				let coordsField = field.getBoundingClientRect();
-				let coordsBall = getCoords(ball);
+				let coordsBall = ball.getBoundingClientRect();
 
-				let x = event.clientX - coordsField.left - ball.width / 2 - field.clientLeft;
-				let y = event.clientY - coordsField.top - ball.height / 2 - field.clientTop;
-				
-				console.log('event.clientX - ' + event.clientX + ' : coordsBall.left - ' + coordsField.left);
+				let x, y;
+
+				if (event.clientX + coordsBall.width > coordsField.right) {
+					x = coordsField.width - ball.width - field.clientLeft * 2;
+				} else if (event.clientX - coordsBall.width < coordsField.left) {
+					x = 0;
+				} else {
+					x = event.clientX - coordsField.left - ball.width / 2 - field.clientLeft;
+				}
+
+				if (event.clientY + coordsBall.height > coordsField.bottom) {
+					y = coordsField.height - ball.height - field.clientTop * 2;
+				} else if (event.clientY - coordsBall.height < coordsField.top) {
+					y = 0;
+				} else {
+					y = event.clientY - coordsField.top - ball.height / 2 - field.clientTop;
+				}
 				
 				ball.style.left = x + 'px';
 				ball.style.top = y + 'px';
 			}
-
-			function getCoords(elem) {
-				let coords = elem.getBoundingClientRect();
-
-				return {
-					left: coords.left + window.pageXOffset,
-					top: coords.top + window.pageYOffset,
-					right: coords.right + window.pageXOffset,
-					bottom: coords.bottom + window.pageYOffset,
-					width: coords.width,
-					height: coords.height,
-				}
-			}
 		</script>
 
+		<!-- //5 -->
+		
 
 	</body>
 </html>
