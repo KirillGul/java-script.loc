@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Размеры и прокрутка элементов</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<a href="../index.html" class="www">Назад</a>
+
+		<!-- //1 -->
+		<div id="one" style="top: 100px; left: 50px; height: 150px; width: 150px; overflow: auto; padding: 5px;">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ut, obcaecati nulla non repellendus inventore adipisci quae a reiciendis tenetur ea ab? 
+			Voluptatum repellendus vel sed quae expedita voluptates accusantium itaque fugiat sapiente sit similique velit eos, doloremque, ex id a aperiam perferendis porro. 
+			Ipsam sed rerum minima illo molestiae.
+		</div>
+
+		<script>
+			'use strict';
+
+			let div1 = document.getElementById('one');
+
+			Object.defineProperty(div1, 'scrollBottom', {
+				get() {
+					return this.scrollHeight - this.scrollTop - this.clientHeight;
+				},
+
+				set(value) {
+					this.scrollTop = this.scrollHeight - value - this.clientHeight;
+				},
+			});
+
+			//console.log(div1.scrollTop);
+			//console.log(div1.scrollBottom);
+
+
+			div1.scrollTop = 150;
+			//console.log(div1.scrollTop);
+			//console.log(div1.scrollBottom);
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			'use strict';
+
+			//Мой вариант
+			let scrollWin = div1.offsetWidth - div1.clientWidth - parseFloat(getComputedStyle(document.getElementById('one')).borderLeft);
+			console.log(scrollWin);
+
+			//По учебнику повторенный
+			let div2 = document.createElement('div');
+
+			div2.style.overflow = 'scroll';
+			div2.style.height = '50px';
+			div2.style.width = '50px';
+
+			document.body.append(div2);
+
+			let widthScroll = div2.offsetWidth - div2.clientWidth;
+
+			div2.remove();
+
+			//alert(widthScroll);
+
+		</script>
+
+		<!-- //3 -->
+		<div id="field">
+			<img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+		</div>
+
+		<style>
+			#field {
+			  width: 200px;
+			  border: 10px groove black;
+			  background-color: #00FF00;
+			  position: relative;
+			}
+		
+			#ball {
+			  position: absolute;
+			  width: 40px;
+			  height: 40px;
+
+			}
+		  </style>
+
+		<script>
+			'use strict';
+
+			let field = document.getElementById('field');
+			let ball = document.getElementById('ball');
+
+			ball.style.top = field.clientHeight / 2  - ball.offsetHeight / 2 + 'px';
+			ball.style.left = field.clientWidth / 2 - ball.offsetWidth / 2 + 'px';
+			console.log(field.offsetHeight);
+
+		</script>
+
+		<!-- //4 -->
+		<div>
+			<p>В чём отличие между getComputedStyle(elem).width и elem.clientWidth?</p>
+			<p>Укажите хотя бы 3 отличия, лучше – больше.</p>
+			<ul>
+				<li>getComputedStyle(elem).width - окончательное значение с учетом всех стилей, а elem.clientWidth - текущее (возможно) измененное значение</li>
+				<li>elem.clientWidth - это ширина вместе с padding</li>
+				<li>getComputedStyle(elem).width - зависит от значения box-sizing</li>
+				<li>getComputedStyle(elem).width - может быть заданно как auto</li>
+				<li>elem.clientWidth\clientHeight - учитывают ширину без полосы прокрутки, т.е. фактически отнимая от ширины элемента, ширину полосы прокрутки</li>
+				<li>getComputedStyle(elem).width - не которые браузеры по разному возвращают значение (с учётом или без учета полосы прокрутки)</li>
+			</ul>
+		</div>
+
+			
+
+		
+
+	</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Изменение документа</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<a href="../index.html" class="www">Назад</a>
+
+		<!-- //1 -->
+		<div id="elem"></div>
+
+		<script>
+		'use strict';
+
+		let text = '<p>Текст 1</p>';
+
+		elem.append(document.createTextNode(text));
+		//elem.innerHTML = text;
+		//elem.textContent = text;
+
+		</script>
+
+		<!-- //2 -->
+		<ol id="elem2">
+			<li>Привет</li>
+			<li>Мир</li>
+		</ol>
+		  
+		<script>
+			'use strict';
+
+			function clear(elem) {				
+				elem.innerHTML = '';
+			}
+		  
+			clear(elem2); //очищает список
+		</script>
+
+		<!-- //3 -->
+		<table id="table">
+			aaa
+			<tr>
+			  <td>Тест</td>
+			</tr>
+		</table>
+		  
+		<script>
+			'use strict';
+
+			//alert(table); // таблица, как и должно быть
+		  
+			//table.remove();
+			// почему в документе остался текст "ааа"?
+		 </script>
+
+		<!-- //4 -->
+		 <ol id="list4"></ol>
+		  
+		<script>
+			'use strict';
+			/*
+			let context;
+			do {
+				context = prompt('Содержимое пункта меню: ', '');
+
+				if(context) {
+					let li = document.createElement('li');
+					li.append(context);
+					list4.append(li);
+				}
+
+			} while(context && context !== '')
+			*/
+		</script>
+
+		<!-- //5 -->		 
+		<div id="container"></div>
+		  
+		<script>
+			'use strict';
+			
+			let data = {
+				"Рыбы": {
+					"форель": {},
+					"лосось": {}
+				},
+
+				"Деревья": {
+					"Огромные": {
+						"секвойя": {},
+						"дуб": {}
+					},
+					"Цветковые": {
+						"яблоня": {},
+						"магнолия": {}
+					}
+				}
+			};
+
+
+			let container = document.getElementById('container');
+			//createTree(container, data); // создаёт дерево в контейнере			
+
+			//Решение 1
+			/*
+			function createTree(container, data) {
+				container.innerHTML = creatTreeStr(data);
+			}
+
+			function creatTreeStr(data) {
+				let str = '<ul>';
+				
+				for(let key in data) {
+					str += '<li>';
+					str += key;
+
+					if (Object.keys(data[key]).length > 0) {
+						str += creatTreeStr(data[key]);
+					}
+					str += '</li>';
+				}
+								
+				return str += '</ul>';
+			}
+			*/
+
+			//Решение 2
+	
+			function createTree(container, data) {
+				container.append(createElementDom(data));
+			}
+
+			function createElementDom(obj) {
+				let ul;
+				if (Object.keys(obj).length > 0) {
+					ul = document.createElement('ul');
+				
+					for (let key in obj) {
+						let li = document.createElement('li');
+						li.textContent = key;
+
+						if (Object.keys(obj[key]).length > 0) {
+							li.append(createElementDom(obj[key]));
+						}
+
+						ul.append(li);
+					}		
+				}
+				
+				return ul;
+			}
+			
+		</script>
+
+		<!-- //6 -->
+		<div id = "container6">
+			<ul>
+				<li>
+					Животные
+					<ul>
+						<li>
+							Млекопитающие
+							<ul>
+								<li>Коровы</li>
+								<li>Ослы</li>
+								<li>Собаки</li>
+								<li>Тигры</li>
+							</ul>
+						</li>
+						<li>
+							Другие
+							<ul>
+								<li>Змеи</li>
+								<li>Птицы</li>
+								<li>Ящирицы</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					Рыбы
+					<ul>
+						<li>
+							Аквариумные
+							<ul>
+								<li>Гуппи</li>
+								<li>Скалярии</li>
+							</ul>
+						</li>
+						<li>
+							Морские
+							<ul>
+								<li>Морская формель</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			'use strict';
+
+			let ul = document.querySelector('#container6 > ul');
+			
+			addCountLi(ul);
+
+			function addCountLi(container) {
+				if (container.nodeName == 'UL') {
+					for (let li of container.children) {
+						addCountLi(li);
+					}
+				} else {
+					let ul = container.querySelector('ul');
+					if (ul) {
+						addCountLi(ul);
+					
+						let nameLiFull = container.innerText;
+						nameLiFull = nameLiFull.split('\n');
+
+						let nameLiNew = nameLiFull[0] + ' [' + (nameLiFull.length - 1) + ']';
+						container.innerHTML = container.innerHTML.replace(nameLiFull[0], nameLiNew);
+					}
+				}
+			}
+
+		</script>
+
+		<!-- //7 -->
+		<div class="cal"></div>
+
+		<script>
+			'use strict';
+
+			let cal = document.querySelector('.cal');
+			createCalendar(cal, 2023, 11);
+
+			function getRussianDay(date) { //функия возвращение дня недели 1 - понедельник, ..., 7 - воскресенье
+				let day = date.getDay();
+
+				if (day == 0) {
+					return 7;
+				}
+
+				return day;
+			}
+
+			function createCalendar(elem, year, month) {
+				let mon = month - 1;
+				let dateObj = new Date(year, mon); //январь - 0, ..., декабрь - 11
+				let day = getRussianDay(dateObj);
+
+				let str = `<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr>`;
+
+				str += '<tr>';
+				for(let i = 1; i < day; i++) {
+					str += '<td></td>';
+				}
+
+				let dateObjEnd = new Date(year, mon + 1, 0);
+				let countTD;
+				
+				for(let i = 1; i <= dateObjEnd.getDate(); i++) {
+					let dayNumber = getRussianDay(new Date(year, mon, i));
+					
+					if(dayNumber == 1) str += '<tr>';
+
+					str += '<td>' + i + '</td>';
+					countTD++;
+
+					if(dayNumber == 7) {
+						str += '</tr>';
+						countTD = 1;
+					}
+				}
+
+				while (countTD <= 7) {
+					if(countTD == 1) break;
+
+					countTD++;
+					str += '<td></td>';
+				}
+
+				str += `</table>`;
+				str += `
+					<style>
+						.cal > table th, td {
+							border: 1px solid black;
+							text-align: center;
+							padding: 3px;
+						}
+						.cal > table th {
+							background-color: #E6E6E6;
+							font-weight: bold;
+						}
+						table {
+    						border-collapse: collapse;
+						}
+					</style>
+					`;
+
+				elem.innerHTML = str;				
+			}			
+
+		</script>
+
+		<!-- //8 -->
+		<div id="clock">
+			<span class="hours">hh</span>:<span class="minutes">mm</span>:<span class="second">ss</span>
+		</div>
+		<input type="button" onclick="clockStart()" value="Start">
+		<input type="button" onclick="clockStop()" value="Stop">
+
+		<script>
+			'use strict';
+
+			let styleSrt = `
+				<style>
+					.hours {
+						color: red;
+					}
+
+					.minutes {
+						color: green;
+					}
+
+					.second {
+						color: blue;
+					}
+				</style>
+			`;
+
+		let div = document.getElementById('clock');
+		div.insertAdjacentHTML('afterend', styleSrt);
+
+		let timerId;
+		function update(date) {		
+			let divClock = document.getElementById('clock');
+
+			let hours = date.getHours();
+			if (hours < 10) hours = '0' + hours;
+			let h = divClock.querySelector('span.hours');
+			h.innerText = hours;
+
+			let minutes = date.getMinutes();
+			if (minutes < 10) minutes = '0' + minutes;
+			let m = divClock.querySelector('span.minutes');				
+			m.innerText = minutes;
+
+			let second = date.getSeconds();
+			if (second < 10) second = '0' + second;
+			let s = divClock.querySelector('span.second');
+			s.innerText = second;
+		}
+
+		function clockStart() {
+			let date = new Date;
+			update(date);
+			timerId = setInterval(() => update(new Date), 1000);
+		}
+
+		function clockStop() {
+			clearInterval(timerId);
+			timerId = null;
+		}
+
+		</script>
+
+		<!-- //9 -->
+		<ul id="ul">
+			<li id="one">1</li>
+			<li id="two">4</li>
+		</ul>
+
+		<script>
+			'use strict';
+
+			let one = document.getElementById('one');
+			one.insertAdjacentHTML('afterend', '<li>2</li><li>3</li>');
+
+		</script>
+
+		<!-- //10 -->
+		<table id="t10">
+			<thead>
+			  <tr>
+				<th>Name</th><th>Surname</th><th>Age</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td>John</td><td>Smith</td><td>10</td>
+			  </tr>
+			  <tr>
+				<td>Pete</td><td>Brown</td><td>15</td>
+			  </tr>
+			  <tr>
+				<td>Ann</td><td>Lee</td><td>5</td>
+			  </tr>
+			</tbody>
+		</table>
+
+		<script>
+			'use strict';
+
+			let table = document.getElementById('t10');
+			let trs = table.querySelectorAll('tbody > tr');
+			console.log(trs);
+
+			let trsArray = Array.from(trs);
+			trsArray.sort((a, b) => (a.cells[0].innerHTML).localeCompare(b.cells[0].innerHTML));
+
+			let str = '<tbody>';
+			for (let tr of trsArray) {
+				str += '<tr>';
+				for (let td of tr.cells) {
+					str += '<td>' + td.innerText +'</td>';	
+				}
+				str += '</tr>';
+			}
+			str += '</tbody>';
+
+			let tableBody = table.querySelector('tbody');
+			tableBody.outerHTML = str;
+
+		</script>
+
+	</body>
+</html>

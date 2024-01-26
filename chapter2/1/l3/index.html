@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Навигация по DOM-элементам</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+		<style>
+			table {
+			  border-collapse: collapse;
+			}
+		
+			td {
+			  border: 1px solid black;
+			  padding: 3px 5px;
+			}
+		  </style>
+	</head>
+	<body>
+		<a href="../index.html">Назад</a>
+		
+		<div>Пользователи:</div>
+		<ul>
+			<li>Джон</li>
+			<li>Пит</li>
+		</ul>
+
+		<table id="table">
+			<tbody>
+				<tr>
+					<td>1:1</td>
+					<td>2:1</td>
+					<td>3:1</td>
+					<td>4:1</td>
+					<td>5:1</td>
+				</tr>
+				<tr>
+					<td>1:2</td>
+					<td>2:2</td>
+					<td>3:2</td>
+					<td>4:3</td>
+					<td>5:4</td>
+				</tr>
+				<tr>
+					<td>1:3</td>
+					<td>2:3</td>
+					<td>3:3</td>
+					<td>4:3</td>
+					<td>5:3</td>
+				</tr>
+				<tr>
+					<td>1:4</td>
+					<td>2:4</td>
+					<td>3:4</td>
+					<td>4:4</td>
+					<td>5:4</td>
+				</tr>
+				<tr>
+					<td>1:5</td>
+					<td>2:5</td>
+					<td>3:5</td>
+					<td>4:5</td>
+					<td>5:5</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- //1 -->
+		<script>
+			'use strict'
+
+			let div = document.body.firstElementChild;
+			console.log(div);
+
+			let ul = div.nextElementSibling;
+			console.log(ul);
+
+			let li = ul.lastElementChild;
+			console.log(li);
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+
+			let i = 0;
+			for(let row of table.rows) {
+				row.cells[i].style.backgroundColor = 'red';
+				i++;
+			}
+
+		</script>
+	</body>
+</html>

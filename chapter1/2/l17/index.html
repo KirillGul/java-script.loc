@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Стрелочные функции, основы</title>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+	<a href="../index.html">Назад</a>
+
+	<!-- //1 -->
+	<script>
+		'use strict';
+
+		/*
+		function ask(question, yes, no) {
+  			if (confirm(question)) yes()
+  			else no();
+		}
+
+		ask(
+			"Вы согласны?",	
+			ok, 
+			no
+		);
+
+		function ok() {
+			alert("Вы согласились.");
+		}
+
+		function no() {
+			alert("Вы отменили выполнение.");
+		}
+		*/
+		
+		function ask(question, yes, no) {
+			if (confirm(question)) yes()
+			else no();
+		}
+
+		ask(
+			"Вы согласны?",
+			() => alert("Вы согласились."),
+			() => alert("Вы отменили выполнение.")
+		);
+
+	</script>
+
+</body>
+
+</html>

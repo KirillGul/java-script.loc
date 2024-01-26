@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Методы объекта, "this"</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			'use strict';
+
+			function makeUser() {
+				return {
+					name: "John",
+					ref: this,
+				};
+			}
+
+			let user = makeUser();
+
+			alert(user.ref); //undefined
+			alert(user.ref?.name); //Каким будет результат? !Ошибка!, т.к. ref функции равен undefined
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			"use strict";
+
+			let calculator = {
+				x: null,
+				y: null,
+
+				read() {
+					this.x = prompt ('Введите значение 1: ', '');
+					this.y = prompt ('Введите значение 2: ', '');
+				},
+
+				sum() {
+					return +this.x + +this.y;
+				},
+				mul() {
+					return this.x * this.y;
+				}
+			};
+
+			calculator.read();
+			alert(calculator.sum());
+			alert(calculator.mul());
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			"use strict";
+
+			let ladder = {
+				step: 0,
+				up() {
+					this.step++;
+					return this;
+				},
+				down() {
+					this.step--;
+					return this;
+				},
+				showStep: function() { //показывает текущую ступеньку
+					alert( this.step );
+					return this;
+				}
+			};
+
+			ladder.up().up().down().showStep().down().showStep(); //показывает 1 затем 0
+
+		</script>
+
+	</body>
+</html>

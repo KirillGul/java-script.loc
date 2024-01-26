@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Декораторы и переадресация вызова, call/apply</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			'use strict';
+
+			function work(a, b) {
+				alert(a + b);
+			}
+
+			//work = spy(work);
+
+			function spy(func) {
+				f.calls = [];
+
+				function f(...args) {
+					f.calls.push(args);
+					return func.call(this, ...args);
+				}
+
+				return f;
+			}
+			/*
+			work(1, 2); //3
+			work(4, 5); //9
+
+			for (let args of work.calls) {
+				alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+			}
+			*/
+		</script>
+
+		<!-- //2 -->
+		<script>
+			'use strict';
+
+			function f(x) {
+				alert(x);
+			}
+
+			// создаём обёртки
+			//let f1000 = delay(f, 1000);
+			//let f1500 = delay(f, 1500);
+
+			function delay(func, ms) {
+				return function() {
+					setTimeout(() => func.apply(this, arguments), ms);
+				}
+			}
+
+			//f1000("test1"); // показывает "test" после 1000 мс
+			//f1500("test2"); // показывает "test" после 1500 мс
+		</script>
+
+		<!-- //3 -->
+		<script>
+			'use strict';
+
+			function f3(x) {
+				alert(x);
+			}
+
+			//let fDeb = debounce(f3, 1000);
+
+			//fDeb("a");
+			//setTimeout(() => fDeb("b"), 200);
+			//setTimeout(() => fDeb("c"), 500);
+
+			function debounce(func, ms) {
+				let timerId;
+
+				return function() {
+					clearTimeout(timerId);
+					timerId = setTimeout(() => func.apply(this, arguments), ms);
+				}
+			}
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+			'use strict';
+
+			function f4(a) {
+				console.log(a)
+			}
+
+			// f1000 передаёт вызовы f максимум раз в 1000 мс
+			//let f1000_4 = throttle(f4, 1000);
+
+			//f1000_4(1); //показывает 1
+			//f1000_4(2); //(ограничение, 1000 мс ещё нет)
+			//f1000_4(3); //(ограничение, 1000 мс ещё нет)
+
+			function throttle(func, ms) {
+				let timerId;
+
+				return function() {
+					if (timerId !== undefined) {
+						clearTimeout(timerId);
+						timerId = setTimeout(() => func.apply(this, arguments), ms);
+					} else {
+						func.apply(this, arguments);
+						timerId = 1;
+					}
+				}
+			}
+
+		</script>
+
+	</body>
+</html>

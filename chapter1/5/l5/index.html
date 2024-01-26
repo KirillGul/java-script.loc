@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Методы массивов</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict";
+
+			console.log(camelize("background-color")); //'backgroundColor'
+			console.log(camelize("list-style-image")); //'listStyleImage'
+			console.log(camelize("-webkit-transition")); //'WebkitTransition'
+
+			function camelize(str) {
+				let arr = str.split('-');
+				let newArr = arr.map((element, index) => {
+					if (index === 0) return element;
+					
+					return element[0].toUpperCase() + element.slice(1);
+				});
+				
+				return newArr.join('');
+			}
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			"use strict";
+
+			let arr = [5, 3, 8, 1];
+
+			let filtered = filterRange(arr, 1, 4);
+
+			//alert(filtered); // 3,1 (совпадающие значения)
+			//alert(arr); // 5,3,8,1 (без изменений)
+
+			function filterRange(arr, min, max) {
+				return arr.filter(element => { element >= min && element <= max; });
+			}
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			"use strict";
+
+			let arr_3 = [5, 3, 8, 1];
+
+			filterRangeInPlace(arr_3, 1, 4); // удалены числа вне диапазона 1..4
+
+			//alert(arr_3); // [3, 1]
+
+			function filterRangeInPlace(array, min, max) {
+				array.forEach((element, index, array) => {
+					if (element < min || element > max) {
+						array.splice(index, 1);
+					}
+				});
+			}
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+			"use strict";
+
+			let arr_4 = [5, 2, 1, -10, 8];
+
+			arr_4.sort((a, b) => a > b ? -1 : 1);
+
+			//alert(arr_4); //8, 5, 2, 1, -10
+
+		</script>
+
+		<!-- //5 -->
+		<script>
+			"use strict";
+
+			let arr_5 = ["HTML", "JavaScript", "CSS"];
+
+			let sorted = copySorted(arr_5);
+
+			//alert(sorted); // CSS, HTML, JavaScript
+			//alert(arr_5); // HTML, JavaScript, CSS (без изменений)
+
+			function copySorted(array) {
+				return array.slice().sort((a, b) => a.localeCompare(b));;
+			}
+
+		</script>
+
+		<!-- //6 -->
+		<script>
+			"use strict";
+
+			let calc = new Calculator;
+			alert( calc.calculate("3 + 7") ); // 10
+
+			function Calculator(str)  {
+				this.arrayOperation = {
+					'+': (a, b) => +a + +b,
+					'-': (a, b) => a - b,
+				};
+
+				this.calculate = function(str) {
+					arrayStr = str.split(' ');
+
+					this.value1 = arrayStr[0];
+					this.value2 = arrayStr[2];
+					this.operation = arrayStr[1];
+					
+					return this.arrayOperation[this.operation](this.value1, this.value2);
+				},
+
+				this.addMethod = function(operation, func) {
+					this.arrayOperation[operation] = func;
+				}
+			}
+
+			let powerCalc = new Calculator;
+			powerCalc.addMethod("*", (a, b) => a * b);
+			powerCalc.addMethod("/", (a, b) => a / b);
+			powerCalc.addMethod("**", (a, b) => a ** b);
+
+			let result = powerCalc.calculate("2 ** 3");
+			alert(result); // 8
+
+		</script>
+
+		<!-- //7 -->
+		<script>
+			"use strict";
+
+			let vasya = { name: "Вася", age: 25 };
+			let petya = { name: "Петя", age: 30 };
+			let masha = { name: "Маша", age: 28 };
+
+			let users = [ vasya, petya, masha ];
+
+			let names = users.map(user => {
+				return user.name;
+			});
+
+			alert(names); // Вася, Петя, Маша
+
+		</script>
+
+		<!-- //8 -->
+		<script>
+			"use strict";
+
+			let vasya8 = {name: "Вася", surname: "Пупкин", id: 1};
+			let petya8 = {name: "Петя", surname: "Иванов", id: 2};
+			let masha8 = {name: "Маша", surname: "Петрова", id: 3};
+
+			let users8 = [vasya8, petya8, masha8];
+
+			let usersMapped = users8.map(user => ({
+				fullName: user.name + ' ' + user.surname,
+				id: user.id,
+			}));
+
+			/*
+			usersMapped = [
+			{ fullName: "Вася Пупкин", id: 1 },
+			{ fullName: "Петя Иванов", id: 2 },
+			{ fullName: "Маша Петрова", id: 3 }
+			]
+			*/
+
+			alert(usersMapped[0].id) //1
+			alert(usersMapped[0].fullName) //Вася Пупкин
+
+		</script>
+
+		<!-- //9 -->
+		<script>
+			"use strict";
+
+			let vasya9 = {name: "Вася", age: 25};
+			let petya9 = {name: "Петя", age: 30};
+			let masha9 = {name: "Маша", age: 28};
+
+			let arr9 = [vasya9, petya9, masha9];
+
+			sortByAge(arr9);
+
+			// теперь: [vasya, masha, petya]
+			alert(arr9[0].name); // Вася
+			alert(arr9[1].name); // Маша
+			alert(arr9[2].name); // Петя
+
+			function sortByAge(users) {
+				users.sort((a, b) => a.age - b.age);
+			}
+
+		</script>
+
+		<!-- //10 -->
+		<script>
+			"use strict";
+/*
+			let arr10 = [1, 2, 3];
+
+			shuffle(arr10); // arr = [3, 2, 1]
+			alert(arr10);
+
+			shuffle(arr10); // arr = [2, 1, 3]
+			alert(arr10);
+
+			shuffle(arr10); // arr = [3, 1, 2]
+			alert(arr10);
+			
+			function shuffle(arr) {
+				let newArr = [];
+				let arrNumIndex = [];
+				let numIndex;
+
+				numIndex = getRandomInt(0, arr.length-1);
+				arrNumIndex.push(numIndex);
+				for (let i = 0; i <= arr.length-1; i++) {
+		
+					while (arrNumIndex.length !== arr.length || numIndex in arrNumIndex) {
+						numIndex = getRandomInt(0, arr.length-1);
+					}
+					arrNumIndex.push(numIndex);
+
+					newArr[numIndex] = arr[i];			
+				}
+
+				return newArr;
+			}
+
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+*/
+		</script>
+
+		<!-- //11 -->
+		<script>
+			"use strict";
+
+			let vasya11 = {name: "Вася", age: 25};
+			let petya11 = {name: "Петя", age: 30};
+			let masha11 = {name: "Маша", age: 29};
+
+			let arr11 = [vasya11, petya11, masha11];
+
+			alert(getAverageAge(arr11)); // (25 + 30 + 29) / 3 = 28
+
+			function getAverageAge(arr) {
+				let sum;
+
+				sum = arr.reduce((sum, elem) => sum + elem.age, 0);
+
+				return sum / arr.length;
+			}
+
+		</script>
+
+		<!-- //12 -->
+		<script>
+			"use strict";
+
+			function unique(arr) {
+				let newArr = [];
+
+				for (let str of arr) {
+					if(newArr.includes(str)) continue;
+
+					newArr.push(str);
+				}
+
+				return newArr;
+			}
+
+			let strings = ["кришна", "кришна", "харе", "харе",
+			"харе", "харе", "кришна", "кришна", ":-O"
+			];
+
+			alert(unique(strings)); // кришна, харе, :-O
+
+		</script>
+
+		<!-- //13 -->
+		<script>
+			"use strict";
+
+			let users13 = [
+				{id: 'john', name: "John Smith", age: 20},
+				{id: 'ann', name: "Ann Smith", age: 24},
+				{id: 'pete', name: "Pete Peterson", age: 31},
+			];
+
+			let usersById = groupById(users13);
+
+			function groupById(usersArray) {
+				return usersArray.reduce((obj, value) => {
+					obj[value.id] = value;
+					return obj;
+				}, {})
+			}
+
+			/*
+			// после вызова у нас должно получиться:
+
+			usersById = {
+			john: {id: 'john', name: "John Smith", age: 20},
+			ann: {id: 'ann', name: "Ann Smith", age: 24},
+			pete: {id: 'pete', name: "Pete Peterson", age: 31},
+			}
+			*/
+
+		</script>
+
+	</body>
+</html>

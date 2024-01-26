@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Введение в браузерные события</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+		<style>
+			table {
+			  border-collapse: collapse;
+			}
+		
+			td {
+			  border: 1px solid black;
+			  padding: 3px 5px;
+			}
+		  </style>
+	</head>
+	<body style="height: 2000px;">
+		<a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<div id="text">Текст</div>
+		<input id="input1" type="button" onclick="text.style.display = 'none';" value="Нажмите, чтобы спрятать текст">
+
+		<!-- //2 -->
+		<hr>
+		<input id="input2" type="button" onclick="input2.style.display = 'none';" value="Нажмите, чтобы спрятать себя">
+
+		<!-- //3 -->
+		<hr>
+		<input id="input3" type="button" value="Кнопка 3">
+
+		<script>
+			'use strict';
+
+			let button = document.getElementById('input3');
+
+			button.addEventListener("click", () => alert("1")); //да
+			button.removeEventListener("click", () => alert("1")); //нет
+			button.onclick = () => alert(2); //да
+
+		</script>
+
+		<!-- //4 -->
+		<hr>
+		<div id="field">
+			<img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  
+		</div>
+
+		<style>
+			#field {
+				width: 200px;
+				height: 150px;
+				border: 10px solid black;
+				background-color: #00FF00;
+				position: relative;
+				overflow: hidden;
+				cursor: pointer;
+			}
+		
+			#ball {
+			  position: absolute;
+			  width: 40px;
+			  height: 40px;
+			  left: 0;
+			  top: 0;
+			  transition: all 1s;
+			}
+		</style>
+
+		<script>
+			'use strict';
+
+			let field = document.getElementById('field');
+			let ball = document.getElementById('ball');
+			
+			field.onclick = function(event) {
+				let coordsField = field.getBoundingClientRect();
+				let coordsBall = ball.getBoundingClientRect();
+
+				let x, y;
+
+				if (event.clientX + coordsBall.width > coordsField.right) {
+					x = coordsField.width - ball.width - field.clientLeft * 2;
+				} else if (event.clientX - coordsBall.width < coordsField.left) {
+					x = 0;
+				} else {
+					x = event.clientX - coordsField.left - ball.width / 2 - field.clientLeft;
+				}
+
+				if (event.clientY + coordsBall.height > coordsField.bottom) {
+					y = coordsField.height - ball.height - field.clientTop * 2;
+				} else if (event.clientY - coordsBall.height < coordsField.top) {
+					y = 0;
+				} else {
+					y = event.clientY - coordsField.top - ball.height / 2 - field.clientTop;
+				}
+				
+				ball.style.left = x + 'px';
+				ball.style.top = y + 'px';
+			}
+		</script>
+
+		<!-- //5 -->
+		
+
+	</body>
+</html>

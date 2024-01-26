@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Планирование: setTimeout и setInterval</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>			
+			"use strict";
+
+			//printNumbers(1, 5);
+
+			//через setInterval
+			/*
+			function printNumbers(from, to) {
+				let timerId = setInterval(() => {
+					if (from <= to) {
+						alert(from++);
+					} else {
+						clearInterval(timerId);
+					}
+				}, 1000, from, to);
+			}
+			*/
+
+			//через setTimeout
+			function printNumbers(from, to) {
+				let timerId = setInterval(() => {
+					if (from <= to) {
+						alert(from++);
+						printNumbers(from, to);
+						clearTimeout(timerId);
+					} else {
+						clearTimeout(timerId);
+					}
+
+				}, 1000, 1, 5);
+			}
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+		"use strict";		
+	
+		let i = 0;
+
+		setTimeout(() => alert(i), 100); // ?
+
+		// предположим, что время выполнения этой функции >100 мс
+		for(let j = 0; j < 100000000; j++) {
+			i++;
+		}
+
+		</script>
+
+	</body>
+</html>

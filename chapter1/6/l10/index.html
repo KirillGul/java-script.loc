@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Привязка контекста к функции</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			'use strict';
+
+			function f() {
+				alert(this); //null
+			}
+
+			let user = {
+				g: f.bind(null)
+			};
+
+			//user.g();
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			'use strict';
+
+			function f() {
+				alert(this.name);
+			}
+
+			f = f.bind({name: "Вася"}).bind( {name: "Петя"});
+
+			//f(); //Вася
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+			'use strict';
+
+			function sayHi() {
+  				alert(this.name);
+			}
+			
+			sayHi.test = 5;
+
+			let bound = sayHi.bind({
+				name: "Вася"
+			});
+
+			//alert(bound.test); //что выведет? почему? //undefined
+
+		</script>
+
+		<!-- //4 -->
+		<script>
+			'use strict';
+
+			function askPassword(ok, fail) {
+				let password = prompt("Password?", '');
+				if (password == "rockstar") ok();
+				else fail();
+			}
+
+			let user4 = {
+				name: 'Вася',
+				loginOk() {
+					alert(`${this.name} logged in`);
+				},
+				loginFail() {
+					alert(`${this.name} failed to log in`);
+				},
+			};
+
+			//askPassword(user4.loginOk.bind(user4), user4.loginFail.bind(user4));
+
+		</script>
+
+		<!-- //5 -->
+		<script>
+			'use strict';
+
+			function askPassword5(ok, fail) {
+				let password = prompt("Password?", '');
+				if (password == "rockstar") ok();
+				else fail();
+			}
+
+			let user5 = {
+				name: 'John',
+				login(result) {
+					alert( this.name + (result ? ' logged in' : ' failed to log in') );
+				}
+			};
+
+			askPassword5(user5.login.bind(user5, true), user5.login.bind(user5, false)); // ?
+
+		</script>
+
+	</body>
+</html>

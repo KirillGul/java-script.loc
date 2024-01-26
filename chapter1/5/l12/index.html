@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Формат JSON, метод toJSON</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict";
+
+			let user = {
+				name: "Василий Иванович",
+				age: 35
+			};
+
+			let json = JSON.stringify(user);
+			let newObj = JSON.parse(json);
+
+		</script>
+
+		<!-- //2 -->
+		<script>
+			"use strict";
+
+			let room = {
+				number: 23
+			};
+
+			let meetup = {
+				title: "Совещание",
+				occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+				place: room
+			};
+
+			// цикличные ссылки
+			room.occupiedBy = meetup;
+			meetup.self = meetup;
+
+			alert( JSON.stringify(meetup, function replacer(key, value) {
+				if  (key === 'self' || (key === 'occupiedBy' && !Array.isArray(value))) return undefined;
+				console.log(value);
+				return value;
+			}, 4));
+
+			/* в результате должно быть:
+			{
+			"title":"Совещание",
+			"occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
+			"place":{"number":23}
+			}
+			*/
+
+		</script>
+
+	</body>
+</html>
