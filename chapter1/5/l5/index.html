@@ -53,16 +53,15 @@
 
 			let arr_3 = [5, 3, 8, 1];
 
-			filterRangeInPlace(arr_3, 1, 4); // удалены числа вне диапазона 1..4
+			let new_arr_3 = filterRangeInPlace(arr_3, 1, 4); // удалены числа вне диапазона 1..4
 
-			//alert(arr_3); // [3, 1]
+			alert(arr_3); // [3, 1]
+			alert(new_arr_3); // [3, 1]
 
 			function filterRangeInPlace(array, min, max) {
-				array.forEach((element, index, array) => {
-					if (element < min || element > max) {
-						array.splice(index, 1);
-					}
-				});
+				array.filter(element => (element < min || element > max));
+
+				return array;
 			}
 
 		</script>
@@ -101,7 +100,7 @@
 			"use strict";
 
 			let calc = new Calculator;
-			alert( calc.calculate("3 + 7") ); // 10
+			//alert( calc.calculate("3 + 7") ); // 10
 
 			function Calculator(str)  {
 				this.arrayOperation = {
@@ -130,7 +129,7 @@
 			powerCalc.addMethod("**", (a, b) => a ** b);
 
 			let result = powerCalc.calculate("2 ** 3");
-			alert(result); // 8
+			//alert(result); // 8
 
 		</script>
 
@@ -148,7 +147,7 @@
 				return user.name;
 			});
 
-			alert(names); // Вася, Петя, Маша
+			//alert(names); // Вася, Петя, Маша
 
 		</script>
 
@@ -175,8 +174,8 @@
 			]
 			*/
 
-			alert(usersMapped[0].id) //1
-			alert(usersMapped[0].fullName) //Вася Пупкин
+			//alert(usersMapped[0].id) //1
+			//alert(usersMapped[0].fullName) //Вася Пупкин
 
 		</script>
 
@@ -193,9 +192,9 @@
 			sortByAge(arr9);
 
 			// теперь: [vasya, masha, petya]
-			alert(arr9[0].name); // Вася
-			alert(arr9[1].name); // Маша
-			alert(arr9[2].name); // Петя
+			//alert(arr9[0].name); // Вася
+			//alert(arr9[1].name); // Маша
+			//alert(arr9[2].name); // Петя
 
 			function sortByAge(users) {
 				users.sort((a, b) => a.age - b.age);
@@ -286,7 +285,7 @@
 			"харе", "харе", "кришна", "кришна", ":-O"
 			];
 
-			alert(unique(strings)); // кришна, харе, :-O
+			//alert(unique(strings)); // кришна, харе, :-O
 
 		</script>
 
