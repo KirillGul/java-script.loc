@@ -42,17 +42,11 @@
 			//alert(getLocalDay(date_3));       // вторник, нужно показать 2
 
 			function getLocalDay(date) {
-				nameWeekDaysEuro = {
-					1: 'пн', 
-					2: 'вт',
-					3: 'ср',
-					4: 'чт',
-					5: 'пт',
-					6: 'сб',
-					7: 'вс'
-				};
+				day = date.getDay();
 				
-				return date.getDay() == 0 ? nameWeekDaysEuro['7'] : nameWeekDaysEuro[date.getDay()];
+				if (day == 0) return 7;
+				
+				return day;;
 			}
 
 		</script>
