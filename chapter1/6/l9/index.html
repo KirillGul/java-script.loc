@@ -14,87 +14,24 @@
 			'use strict';
 
 			function work(a, b) {
-				alert( a + b ); // произвольная функция или метод
+				alert(a + b); //произвольная функция или метод
 			}
 
 			function spy(f) {
-				f.calls = [];
+				func.calls = [];
 
 				function func(...args) {
-					f.calls.push(args);
-					f.call(this, ...args);
+					func.calls.push(args);
+					return f(...args);
 				};
 
-				return f;
+				return func;
 			}
 
 			work = spy(work);
-
+			/*
 			work(1, 2); // 3
 			work(4, 5); // 9
-
-			for (let args of work.calls) {
-				alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
-			}
-		</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- //1 -->
-		<script>
-			'use strict';
-
-			function work(a, b) {
-				alert(a + b);
-			}
-
-			//work = spy(work);
-
-			function spy(func) {
-				f.calls = [];
-
-				function f(...args) {
-					f.calls.push(args);
-					return func.call(this, ...args);
-				}
-
-				return f;
-			}
-			/*
-			work(1, 2); //3
-			work(4, 5); //9
 
 			for (let args of work.calls) {
 				alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
@@ -110,44 +47,55 @@
 				alert(x);
 			}
 
-			// создаём обёртки
-			//let f1000 = delay(f, 1000);
-			//let f1500 = delay(f, 1500);
-
-			function delay(func, ms) {
-				return function() {
-					setTimeout(() => func.apply(this, arguments), ms);
-				}
+			function delay(f, ms) {
+				return function(...args) {
+					setTimeout(() => f.call(this, ...args), ms);
+				};
+				
 			}
 
-			//f1000("test1"); // показывает "test" после 1000 мс
-			//f1500("test2"); // показывает "test" после 1500 мс
+			// создаём обёртки
+			let f1000 = delay(f, 1000);
+			let f1500 = delay(f, 1500);
+
+			//f1000("test1000"); // показывает "test" после 1000 мс
+			//f1500("test1500"); // показывает "test" после 1500 мс
+
 		</script>
 
 		<!-- //3 -->
 		<script>
 			'use strict';
 
-			function f3(x) {
-				alert(x);
+			function f(text) {
+				alert(text);
 			}
-
-			//let fDeb = debounce(f3, 1000);
-
-			//fDeb("a");
-			//setTimeout(() => fDeb("b"), 200);
-			//setTimeout(() => fDeb("c"), 500);
 
 			function debounce(func, ms) {
 				let timerId;
-
 				return function() {
 					clearTimeout(timerId);
-					timerId = setTimeout(() => func.apply(this, arguments), ms);
+					timerId = setTimeout( () => func.call(this, ...arguments), ms);
 				}
 			}
 
+			f = debounce(f, 1000);
+
+			f("a");
+			setTimeout( () => f("b"), 200);
+			setTimeout( () => f("c"), 500);
+
 		</script>
+
+
+
+
+
+
+
+
+
+
 
 		<!-- //4 -->
 		<script>
