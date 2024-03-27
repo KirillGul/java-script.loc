@@ -14,6 +14,69 @@
 			'use strict';
 
 			function work(a, b) {
+				alert( a + b ); // произвольная функция или метод
+			}
+
+			function spy(f) {
+				f.calls = [];
+
+				function func(...args) {
+					f.calls.push(args);
+					f.call(this, ...args);
+				};
+
+				return f;
+			}
+
+			work = spy(work);
+
+			work(1, 2); // 3
+			work(4, 5); // 9
+
+			for (let args of work.calls) {
+				alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+			}
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- //1 -->
+		<script>
+			'use strict';
+
+			function work(a, b) {
 				alert(a + b);
 			}
 
