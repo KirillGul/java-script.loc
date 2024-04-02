@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Перебираемые объекты</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+			"use strict";
+
+			let range = {
+				from: 1,
+				to: 5,
+
+				[Symbol.iterator]() {
+					return this;
+				},
+
+				next() {
+					if (this.from <= this.to) {
+						return { 
+							done: false,
+							value: this.from++
+						};
+					}
+
+					return {
+						done: true
+					};
+				},
+			};
+
+			for (let num of range) {
+				console.log(num);
+			}
+
+		</script>
+
+	</body>
+</html>

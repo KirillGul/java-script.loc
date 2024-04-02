@@ -9,6 +9,24 @@
 	<body>
         <a href="../index.html">Назад</a>
 
+		<script>
+			let dd = 44;
+
+			function makeCounter() {
+				let count = 0;
+
+				return function () {
+					//return count++;
+					return dd;
+				};
+			}
+
+			let counter_test = makeCounter();
+			console.log(counter_test());
+			console.log(counter_test());
+			debugger;
+		</script>
+
 		<!-- //1 -->
 		<script>			
 			"use strict";
