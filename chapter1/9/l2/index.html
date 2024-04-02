@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Класс: базовый синтаксис</title>
+		<title>Наследование классов</title>
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="/style.css">
 	</head>
@@ -13,11 +13,32 @@
 		<script>			
 			"use strict";
 
-			class Clock {
+			class Animal {
+				constructor(name) {
+					this.name = name;
+				}
+			}
 
+			class Rabbit extends Animal {
+				constructor(name) {
+					super(name);
+					this.created = Date.now();
+				}
+			}
+
+			let rabbit = new Rabbit("Белый кролик"); // Error: this is not defined
+			alert(rabbit.name);
+
+		</script>
+
+		<!-- //2 -->
+		<script>			
+			"use strict";
+
+			class Clock {
 				constructor({ template }) {
 					this.template = template;
-  				}
+				}
 
 				render() {
 					let date = new Date();
@@ -41,17 +62,29 @@
 
 				stop() {
 					clearInterval(this.timer);
-				};
+				}
 
 				start() {
 					this.render();
 					this.timer = setInterval(() => this.render(), 1000);
-				};
-
+				}
 			}
 
-			let clock = new Clock({template: 'h:m:s'});
-			clock.start();
+			class ExtendedClock extends Clock {
+				constructor(options) {
+					super(options);
+					let {precision = 1000} = options;
+					this.precision = precision;
+				}
+
+				start() {
+					this.render();
+					this.timer = setInterval(() => this.render(), this.precision);
+				}
+			}
+
+			let extClock = new ExtendedClock({template: 'h:m:s', precision: 2000});
+			extClock.start();
 
 		</script>
 		
