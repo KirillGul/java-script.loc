@@ -1,114 +1,153 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Прототипное наследование</title>
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="/style.css">
-	</head>
-	<body>
-        <a href="../index.html">Назад</a>
 
-		<!-- //1 -->
-		<script>			
-			"use strict";
+<head>
+	<meta charset="utf-8">
+	<title>Прототипное наследование</title>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/style.css">
+</head>
 
-			let animal = {
-				jumps: null
-			};
-			let rabbit = {
-				__proto__: animal,
-				jumps: true
-			};
+<body>
+	<a href="../index.html">Назад</a>
 
-			//alert( rabbit.jumps ); // true (1)
+	<script>
+		"use strict";
 
-			delete rabbit.jumps;
+		class User {
+			val = 'ValueOne'
 
-			//alert( rabbit.jumps ); // null (2)
+			constructor(name) {
+				// вызывает сеттер
+				this.name = name;
+			}
 
-			delete animal.jumps;
+			get name() {
+				return this._name;
+			}
+
+			set name(value) {
+				if (value.length < 4) {
+					alert("Имя слишком короткое.");
+					return;
+				}
+				this._name = value;
+			}
+
+			func1() {}
+
+		}
+
+		let user = new User("Иван");
+		alert(user.name); // Иван
+
+		user = new User(""); // Имя слишком короткое.
+
+	</script>
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+
+	<!-- //1 -->
+	<script>
+		"use strict";
+
+		let animal = {
+			jumps: null
+		};
+		let rabbit = {
+			__proto__: animal,
+			jumps: true
+		};
+
+		//alert( rabbit.jumps ); // true (1)
+
+		delete rabbit.jumps;
+
+		//alert( rabbit.jumps ); // null (2)
+
+		delete animal.jumps;
 
 			//alert( rabbit.jumps ); // undefined (3)
 
-		</script>
+	</script>
 
-		<!-- //2 -->
-		<script>			
-			"use strict";
+	<!-- //2 -->
+	<script>
+		"use strict";
 
-			let head = {
-				glasses: 1
-			};
+		let head = {
+			glasses: 1
+		};
 
-			let table = {
-				pen: 3,
-				__proto__: head,
-			};
+		let table = {
+			pen: 3,
+			__proto__: head,
+		};
 
-			let bed = {
-				sheet: 1,
-				pillow: 2,
-				__proto__: table,
-			};
+		let bed = {
+			sheet: 1,
+			pillow: 2,
+			__proto__: table,
+		};
 
-			let pockets = {
-				money: 2000,
-				__proto__: bed,
-			};
-			
+		let pockets = {
+			money: 2000,
+			__proto__: bed,
+		};
+
 			//alert(bed.glasses);
 
-		</script>
+	</script>
 
-		<!-- //3 -->
-		<script>			
-			"use strict";
+	<!-- //3 -->
+	<script>
+		"use strict";
 
-			let animal3 = {
-				eat() {
+		let animal3 = {
+			eat() {
 				this.full = true;
 			}
-			};
+		};
 
-			let rabbit3 = {
-				__proto__: animal3
-			};
+		let rabbit3 = {
+			__proto__: animal3
+		};
 
-			rabbit3.eat(); //rabbit3
+			//rabbit3.eat(); //rabbit3
 
-		</script>
+	</script>
 
-		<!-- //4 -->
-		<script>			
-			"use strict";
+	<!-- //4 -->
+	<script>
+		"use strict";
 
-			let hamster = {
-				stomach: [],
+		let hamster = {
+			stomach: [],
 
-				eat(food) {
-					this.stomach.push(food);
-				}
-			};
+			eat(food) {
+				this.stomach.push(food);
+			}
+		};
 
-			let speedy = {
-				stomach: [],
-				__proto__: hamster
-			};
+		let speedy = {
+			stomach: [],
+			__proto__: hamster
+		};
 
-			let lazy = {
-				stomach: [],
-				__proto__: hamster
-			};
+		let lazy = {
+			stomach: [],
+			__proto__: hamster
+		};
 
 			// Этот хомяк нашёл еду
-			speedy.eat("apple");
-			alert( speedy.stomach ); // apple
+			//speedy.eat("apple");
+			//alert( speedy.stomach ); // apple
 
 			// У этого хомяка тоже есть еда. Почему? Исправьте
-			alert( lazy.stomach ); // apple
+			//alert( lazy.stomach ); // apple
 
-		</script>
+	</script>
 
-	</body>
+</body>
+
 </html>
