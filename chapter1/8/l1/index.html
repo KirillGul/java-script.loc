@@ -11,42 +11,6 @@
 <body>
 	<a href="../index.html">Назад</a>
 
-	<script>
-		"use strict";
-
-		class User {
-			val = 'ValueOne'
-
-			constructor(name) {
-				// вызывает сеттер
-				this.name = name;
-			}
-
-			get name() {
-				return this._name;
-			}
-
-			set name(value) {
-				if (value.length < 4) {
-					alert("Имя слишком короткое.");
-					return;
-				}
-				this._name = value;
-			}
-
-			func1() {}
-
-		}
-
-		let user = new User("Иван");
-		alert(user.name); // Иван
-
-		user = new User(""); // Имя слишком короткое.
-
-	</script>
-
-	<!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
-
 	<!-- //1 -->
 	<script>
 		"use strict";
