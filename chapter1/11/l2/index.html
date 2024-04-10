@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Промисы</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<script>
+
+			let promise = new Promise(function(resolve, reject) {
+				// эта функция выполнится автоматически, при вызове new Promise
+
+				// через 1 секунду сигнализировать, что задача выполнена с результатом "done"
+				setTimeout(() => resolve("done"), 1000);
+			});
+			
+		</script>
+		
+	</body>
+</html>
