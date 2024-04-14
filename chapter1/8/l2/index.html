@@ -9,6 +9,17 @@
 	<body>
         <a href="../index.html">Назад</a>
 
+		<script>
+			function Rabbit() { }
+			// по умолчанию:
+			// Rabbit.prototype = { constructor: Rabbit }
+
+			let rabbitTest = new Rabbit(); // наследует от {constructor: Rabbit}
+
+			alert(rabbitTest.constructor == Rabbit); // true (свойство получено из прототипа)
+
+		</script>
+
 		<!-- //1 -->
 		<script>			
 			"use strict";
