@@ -11,6 +11,19 @@
 <body>
 	<a href="../index.html">Назад</a>
 
+	<script>
+
+		let animalTest = {
+			jumps: null,
+		};
+		let rabitTest = {
+			jumps: 4,
+			__proto__: animalTest,
+		};
+
+
+	</script>
+
 	<!-- //1 -->
 	<script>
 		"use strict";
@@ -18,20 +31,21 @@
 		let animal = {
 			jumps: null
 		};
+
 		let rabbit = {
 			__proto__: animal,
 			jumps: true
 		};
 
-		//alert( rabbit.jumps ); // true (1)
+		alert(rabbit.jumps); // true (1)
 
 		delete rabbit.jumps;
 
-		//alert( rabbit.jumps ); // null (2)
+		alert(rabbit.jumps); // null (2)
 
 		delete animal.jumps;
 
-			//alert( rabbit.jumps ); // undefined (3)
+		alert(rabbit.jumps); // undefined (3)
 
 	</script>
 
