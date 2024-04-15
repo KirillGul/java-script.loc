@@ -11,6 +11,20 @@
 <body>
 	<a href="../index.html">Назад</a>
 
+	<script>
+// проверка instanceof будет полагать,
+// что всё со свойством canEat - животное Animal
+class Animal {
+  static [Symbol.hasInstance](obj) {
+    if (obj.canEat) return true;
+  }
+}
+
+let obj = { canEat: 111 };
+alert(obj instanceof Animal); // true: вызван Animal[Symbol.hasInstance](obj)
+
+	</script>
+
 	<!-- //1 -->
 	<script>
 		"use strict";
