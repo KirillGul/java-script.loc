@@ -1,62 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Введение: колбэки</title>
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="/style.css">
-	</head>
-	<body>
-        <a href="../index.html">Назад</a>
 
-		<script>
-let promise = new Promise(function(resolve, reject) {
-  setTimeout(() => resolve("done!"), 1000);
-});
+<head>
+	<meta charset="utf-8">
+	<title>Введение: колбэки</title>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/style.css">
+</head>
 
-// resolve запустит первую функцию, переданную в .then
-promise.then(
-  result => alert(result), // выведет "done!" через одну секунду
-  error => alert(error) // не будет запущена
-);
+<body>
+	<a href="../index.html">Назад</a>
+		
+	<!-- //1 -->
+	<script>
+		
+		function loadScript(src, callback) {
+			let script = document.createElement('script');
+			script.src = src;
+			script.onload = () => callback(script);
+			document.head.append(script);
+			debugger;
+		}
 
+		loadScript('my/script.js', function() {
+			newFunction();
+		});
+		
+	</script>
 
-			function removeChar(str){
-/*
-				let arr = str.split('');
-				arr.splice(0, 1);
-				arr.splice(-1, 1);
+</body>
 
-				return arr.join('');
-
-				let arr = str.split('');
-				arr.shift();
-				arr.pop();
-				return arr.join('');
-*/
-				return str.slice(1, -1);
-			};
-
-			console.log(removeChar('eloquent'));
-
-		</script>
-
-		<!-- //1 -->
-		<script>
-			/*
-			function loadScript(src, callback) {
-				let script = document.createElement('script');
-				script.src = src;
-				script.onload = () => callback(script);
-				document.head.append(script);
-				debugger;
-			}
-
-			loadScript('my/script.js', function() {
-				newFunction();
-			});
-			*/
-		</script>
-
-	</body>
 </html>

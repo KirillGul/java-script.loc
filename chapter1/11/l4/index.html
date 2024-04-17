@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Промисы: обработка ошибок</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+        <a href="../index.html">Назад</a>
+
+		<script>
+
+			let iterable = [
+				new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
+				new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
+				new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
+			]
+			// каждый промис даёт элемент массива
+
+			let promise = Promise.all(iterable).then(alert); // когда все промисы выполнятся, результат будет 1,2,3
+
+		</script>
+
+		<!-- //1 -->
+		<script>
+
+			new Promise(function(resolve, reject) {
+				setTimeout(() => {
+					throw new Error("Whoops!");
+				}, 1000);
+			}).catch(alert);
+
+			//В данном примере ошибка генерируется не по ходу выполнения кода, а позже в планировщике. Поэтому промис не может обработать её.
+			
+		</script>
+		
+	</body>
+</html>
