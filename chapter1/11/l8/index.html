@@ -51,41 +51,56 @@
 				}
 			}
 
-			function loadJson(url) {
-				return fetch(url)
-					.then(response => {
-						if (response.status == 200) {
-							return response.json();
-						} else {
-							throw new HttpError(response);
-						}
-					})
+			async function loadJson(url) {
+				let response = await fetch(url);
+
+				if (response.status == 200) {
+					return response.json();
+				}
+
+				throw new HttpError(response);
 			}
 
 			// Запрашивать логин, пока github не вернёт существующего пользователя.
-			function demoGithubUser() {
-				let name = prompt("Введите логин?", "iliakan");
+			async function demoGithubUser() {
+				let error;
 
 				do {
+					let name = prompt("Введите логин?", "KirillGul");
+					error = false;
+					try {
+						let user = await loadJson(`https://api.github.com/users/${name}`);
 
-				} while()
-
-				return loadJson(`https://api.github.com/users/${name}`)
-					.then(user => {
 						alert(`Полное имя: ${user.name}.`);
 						return user;
-					})
-					.catch(err => {
+
+					} catch (err) {					
 						if (err instanceof HttpError && err.response.status == 404) {
 							alert("Такого пользователя не существует, пожалуйста, повторите ввод.");
-							return demoGithubUser();
-						} else {
-							throw err;
+							error = true;
 						}
-					});
+					}
+				} while(error);
 			}
 
-			demoGithubUser();
+			//demoGithubUser();
+
+		</script>
+
+		<!-- //3 -->
+		<script>
+
+			async function wait() {
+				await new Promise(resolve => setTimeout(resolve, 1000));
+
+				return 10;
+			}
+
+			function f() {
+				wait().then((rez) => console.log(rez));
+			}
+
+			f();
 
 		</script>
 		

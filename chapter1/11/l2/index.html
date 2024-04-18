@@ -10,13 +10,33 @@
         <a href="../index.html">Назад</a>
 
 		<script>
-			'use strict';
 
+			function loadScript(src) {
+				return new Promise(function (resolve, reject) {
+					let script = document.createElement('script');
+					script.src = src;
+
+					script.onload = () => resolve();
+					script.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
+
+					document.head.append(script);
+				});
+			}
+
+			loadScript("my/script.js")
+				.then(script => loadScript("my/script.js"))
+				.then(script => {
+					// скрипты загружены, мы можем использовать объявленные в них функции
+					newFunction();
+				});
+
+			debugger;
 
 		</script>
 
 		<!-- //1 -->
 		<script>
+			/*
 			let promise = new Promise(function(resolve, reject) {
 				resolve(1);
 
@@ -24,10 +44,12 @@
 			});
 
 			promise.then(alert);
+			*/
 		</script>
 
 		<!-- //2 -->
 		<script>
+			/*
 			function delay(ms) {
 				return new Promise(function(resolve, reject) {
 					setTimeout(() => resolve("done"), ms);
@@ -35,10 +57,12 @@
 			}
 
 			delay(3000).then(() => alert('выполнилось через 3 секунды'));
+			*/
 		</script>
 
 		<!-- //3 -->
 		<script>
+			/*
 			function showCircle(...args) {
 				return new Promise(resolve);
 			}
@@ -47,6 +71,7 @@
 				div.classList.add('message-ball');
 				div.append("Hello, world!");
 			});
+			*/
 		</script>
 		
 	</body>
