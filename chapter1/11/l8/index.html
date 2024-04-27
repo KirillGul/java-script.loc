@@ -9,6 +9,25 @@
 	<body>
         <a href="../index.html">Назад</a>
 
+		<script>
+
+			async function f() {
+
+				let promise = new Promise((resolve, reject) => {
+					setTimeout(() => resolve("готово!"), 1000)
+				});
+
+				let result = await promise; // будет ждать, пока промис не выполнится (*)
+
+				alert(result); // "готово!"
+			}
+
+			f();
+
+			console.log(1);
+			debugger;
+		</script>
+
 		<!-- //1 -->
 		<script>
 			/*

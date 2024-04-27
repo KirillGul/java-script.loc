@@ -11,24 +11,31 @@
 
 		<script>
 
-			function loadScript(src) {
-				return new Promise(function (resolve, reject) {
-					let script = document.createElement('script');
-					script.src = src;
+			function loadScript(src, callback) {
+				let script = document.createElement('script');
+				script.src = src;
 
-					script.onload = () => resolve();
-					script.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
+				script.onload = () => callback(null, script);
+				script.onerror = () => callback(new Error(`Ошибка загрузки скрипта ${src}`));
 
-					document.head.append(script);
-				});
+				document.head.append(script);
 			}
 
-			loadScript("my/script.js")
-				.then(script => loadScript("my/script.js"))
-				.then(script => {
-					// скрипты загружены, мы можем использовать объявленные в них функции
-					newFunction();
-				});
+			console.log(1);
+
+			let loadScriptPromise = function (src) {
+				return new Promise((resolve, reject) => {
+					loadScript(src, (err, script) => {
+						if (err) reject(err)
+						else resolve(script);
+					});
+				})
+			}
+
+			// использование:
+			let loadPr = loadScriptPromise('my/script.js');
+
+			console.log(2);
 
 			debugger;
 

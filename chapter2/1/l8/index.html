@@ -10,10 +10,15 @@
 		<a href="../index.html" class="www">Назад</a>
 
 		<!-- //1 -->
+		<style>
+			.welcome {
+				position: relative;
+			}
+		</style>
+
 		<script>
 			'use strict';
 
-			//показывает элемент с текстом "Hello" рядом с правой верхней частью окна.
 			showNotification({
 				top: 10, // 10px от верхней границы окна (по умолчанию 0px)
 				right: 10, // 10px от правого края окна (по умолчанию 0px)
@@ -22,19 +27,21 @@
 			});
 
 			function showNotification(options) {
-				let div = document.createElement('div');
-				div.className = 'notification';
-				div.style.position = 'absolute';
-				div.style.top = options.top + 'px';
-				div.style.right = options.right + 'px';
-				div.classList.add(options.className);
-				div.innerHTML = options.html;
-				document.body.append(div);
+				let elem = document.createElement('div');
+			//	elem.style.top = options.top + 'px';
+			//	elem.style.right = options.right + 'px';
+				elem.style.cssText = `
+					top:${options.top}px;
+					right:${options.right}px
+				`;
+				elem.className = options.className;
+				elem.innerHTML = options.html;
 
-				setTimeout(() => div.remove(), 1500);
+				document.body.append(elem);
+
+				setTimeout(() => elem.remove(), 1500);
 			}
-
 		</script>
-
+		
 	</body>
 </html>

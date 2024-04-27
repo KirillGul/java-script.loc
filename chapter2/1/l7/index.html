@@ -10,17 +10,16 @@
 		<a href="../index.html" class="www">Назад</a>
 
 		<!-- //1 -->
-		<div id="elem"></div>
+		<div id="elem1"></div>
 
 		<script>
-		'use strict';
+			'use strict';
 
-		let text = '<p>Текст 1</p>';
+			let text1 = '<strong>text</strong>';
 
-		elem.append(document.createTextNode(text));
-		//elem.innerHTML = text;
-		//elem.textContent = text;
-
+			//elem1.append(document.createTextNode(text1));
+			elem1.innerHTML = text1;
+			//elem1.textContent = text1;
 		</script>
 
 		<!-- //2 -->
@@ -32,15 +31,13 @@
 		<script>
 			'use strict';
 
-			function clear(elem) {				
-				elem.innerHTML = '';
-			}
+			function clear(elem) { elem.innerHTML = ''; }
 		  
-			clear(elem2); //очищает список
+			clear(elem2); // очищает список
 		</script>
 
 		<!-- //3 -->
-		<table id="table">
+		<table id="table3">
 			aaa
 			<tr>
 			  <td>Тест</td>
@@ -50,38 +47,38 @@
 		<script>
 			'use strict';
 
-			//alert(table); // таблица, как и должно быть
+			//alert(table3); // таблица, как и должно быть
 		  
-			//table.remove();
-			// почему в документе остался текст "ааа"?
-		 </script>
-
-		<!-- //4 -->
-		 <ol id="list4"></ol>
-		  
-		<script>
-			'use strict';
-			/*
-			let context;
-			do {
-				context = prompt('Содержимое пункта меню: ', '');
-
-				if(context) {
-					let li = document.createElement('li');
-					li.append(context);
-					list4.append(li);
-				}
-
-			} while(context && context !== '')
-			*/
+			table3.remove();
+			// почему в документе остался текст "ааа"? - потому что 'aaa' выносится из table
 		</script>
 
-		<!-- //5 -->		 
-		<div id="container"></div>
-		  
+		<!-- //4 -->
 		<script>
 			'use strict';
-			
+
+			let ul = document.createElement('ul');
+			document.body.append(ul);
+
+			let textLi;
+			/*while(true) {
+				textLi = prompt("Имя пункт списка:", '');
+
+				if (textLi == '' || textLi == null) break;
+
+				let li = document.createElement('li');
+				li.textContent = textLi;
+				ul.append(li);
+			}*/
+
+		</script>
+
+		<!-- //5 -->
+		<div id="container5"></div>
+
+		<script>
+			'use strict';
+
 			let data = {
 				"Рыбы": {
 					"форель": {},
@@ -100,63 +97,59 @@
 				}
 			};
 
+			let container = document.getElementById('container5');
 
-			let container = document.getElementById('container');
-			//createTree(container, data); // создаёт дерево в контейнере			
-
-			//Решение 1
+			//Вариант через innerHTML
 			/*
+			let str = createTree(container, data); //создаёт дерево в контейнере
+			container.innerHTML = str;
+
 			function createTree(container, data) {
-				container.innerHTML = creatTreeStr(data);
-			}
-
-			function creatTreeStr(data) {
 				let str = '<ul>';
-				
-				for(let key in data) {
-					str += '<li>';
-					str += key;
-
+				for (let key in data) {
 					if (Object.keys(data[key]).length > 0) {
-						str += creatTreeStr(data[key]);
+						str += `<li>${key}`;
+						str += createTree(null, data[key]);
+						str += `</li>`;
+					} else {
+						str += `<li>${key}</li>`;
 					}
-					str += '</li>';
 				}
-								
-				return str += '</ul>';
+				str += '</ul>';
+				return str;
 			}
 			*/
 
-			//Решение 2
-	
+			//Вариант через методы DOM
+			/*
+			createTree(container, data); //создаёт дерево в контейнере
+
 			function createTree(container, data) {
-				container.append(createElementDom(data));
+				let ul = createUl(data);
+				container.append(ul);
 			}
 
-			function createElementDom(obj) {
-				let ul;
-				if (Object.keys(obj).length > 0) {
-					ul = document.createElement('ul');
-				
-					for (let key in obj) {
+			function createUl(data) {
+				let ul = document.createElement('ul');
+				for (let key in data) {
+					if (Object.keys(data[key]).length > 0) {
 						let li = document.createElement('li');
 						li.textContent = key;
-
-						if (Object.keys(obj[key]).length > 0) {
-							li.append(createElementDom(obj[key]));
-						}
-
+						li.append(createUl(data[key]));
 						ul.append(li);
-					}		
+					} else {
+						let li = document.createElement('li');
+						li.textContent = key;
+						ul.append(li);
+					}
 				}
-				
 				return ul;
 			}
-			
+			*/
 		</script>
 
 		<!-- //6 -->
-		<div id = "container6">
+		<div id="container6">
 			<ul>
 				<li>
 					Животные
@@ -204,173 +197,202 @@
 		<script>
 			'use strict';
 
-			let ul = document.querySelector('#container6 > ul');
-			
-			addCountLi(ul);
+			let container6Ul = document.querySelector('#container6 > ul');
 
-			function addCountLi(container) {
-				if (container.nodeName == 'UL') {
-					for (let li of container.children) {
-						addCountLi(li);
-					}
-				} else {
-					let ul = container.querySelector('ul');
-					if (ul) {
-						addCountLi(ul);
-					
-						let nameLiFull = container.innerText;
-						nameLiFull = nameLiFull.split('\n');
+			countList(container6Ul);
 
-						let nameLiNew = nameLiFull[0] + ' [' + (nameLiFull.length - 1) + ']';
-						container.innerHTML = container.innerHTML.replace(nameLiFull[0], nameLiNew);
+			function countList(list) {
+				for(let elem of list.children) {
+					//Решение из учебника
+					/*
+					let lis = document.getElementsByTagName('li');
+
+					for (let li of lis) {
+						// получить количество всех <li> ниже этого <li>
+						let descendantsCount = li.getElementsByTagName('li').length;
+						if (!descendantsCount) continue;
+
+						// добавить непосредственно к текстовому узлу (добавить к тексту)
+						li.firstChild.data += ' [' + descendantsCount + ']';
 					}
-				}
+					*/
+
+					//Моё решение
+					if (elem.firstElementChild?.tagName == 'UL') {
+						countList(elem.firstElementChild);
+
+						let p = elem.innerHTML.indexOf('<ul>', 0);
+						let nameList = elem.innerHTML.slice(0, p).replaceAll('\n\t\t\t\t\t\t\t', '');
+
+						let el = elem.innerText.split('\n');
+						nameList = '\n\t\t\t\t\t\t\t' + nameList + ' [' + (el.length - 1) + ']\n\t\t\t\t\t\t\t';
+						let nextStr = elem.innerHTML.substring(p);
+						elem.innerHTML = nameList + nextStr;						
+					}
+				}		
 			}
 
 		</script>
 
 		<!-- //7 -->
-		<div class="cal"></div>
+		<div id="calendar"></div>
 
+		<style>
+			table {
+				border: 1px solid gray;
+				border-collapse: collapse;
+			}
+
+			table th, td {
+				text-align: center;
+				font-weight: bold;
+				background-color: #E6E6E6;
+				padding: 2px;
+				border: 1px solid gray;
+			}
+		</style>
+		
 		<script>
 			'use strict';
 
-			let cal = document.querySelector('.cal');
-			createCalendar(cal, 2023, 11);
+			let elem7 = document.getElementById('calendar');
 
-			function getRussianDay(date) { //функия возвращение дня недели 1 - понедельник, ..., 7 - воскресенье
-				let day = date.getDay();
-
-				if (day == 0) {
-					return 7;
-				}
-
-				return day;
-			}
-
+			createCalendar(elem7, 2024, 4);
+			//Алогоритм из учебника
 			function createCalendar(elem, year, month) {
 				let mon = month - 1;
-				let dateObj = new Date(year, mon); //январь - 0, ..., декабрь - 11
-				let day = getRussianDay(dateObj);
+				let d = new Date(year, mon);
 
-				let str = `<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr>`;
+				let calendar = '<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
 
-				str += '<tr>';
-				for(let i = 1; i < day; i++) {
-					str += '<td></td>';
+				for(let i = 0; i < getDay(d); i++) {
+					calendar += '<td></td>';
 				}
 
-				let dateObjEnd = new Date(year, mon + 1, 0);
-				let countTD;
-				
-				for(let i = 1; i <= dateObjEnd.getDate(); i++) {
-					let dayNumber = getRussianDay(new Date(year, mon, i));
+				while(mon == d.getMonth()) {
+					calendar += `<td>${d.getDate()}</td>`;
+
+					if(getDay(d) % 7 == 6) {
+						calendar += `</tr><tr>`;
+					}
+
+					d.setDate(d.getDate() + 1);
 					
-					if(dayNumber == 1) str += '<tr>';
+				}
 
-					str += '<td>' + i + '</td>';
-					countTD++;
-
-					if(dayNumber == 7) {
-						str += '</tr>';
-						countTD = 1;
+				if (getDay(d) != 0) {
+					for (let i = getDay(d); i < 7; i++) {
+						calendar += '<td></td>';
 					}
 				}
 
-				while (countTD <= 7) {
-					if(countTD == 1) break;
+				calendar += '</tr></table>';
+				elem.innerHTML = calendar;
 
-					countTD++;
-					str += '<td></td>';
+			}
+
+			function getDay(date) { // получить номер дня недели, от 0 (пн) до 6 (вс)
+					let day = date.getDay();
+					if (day == 0) day = 7; // сделать воскресенье (0) последним днем
+					return day - 1;
 				}
 
-				str += `</table>`;
-				str += `
-					<style>
-						.cal > table th, td {
-							border: 1px solid black;
-							text-align: center;
-							padding: 3px;
-						}
-						.cal > table th {
-							background-color: #E6E6E6;
-							font-weight: bold;
-						}
-						table {
-    						border-collapse: collapse;
-						}
-					</style>
-					`;
+			//Мой алгоритм
+			/*
+			function createCalendar(elem, year, month) {
+				let calendar = '<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr>';
 
-				elem.innerHTML = str;				
-			}			
+				let date = new Date(year, month - 1);
+				let lastNumberDayinMonth = new Date(year, month, 0).getDate();
+
+
+				let dayStart = date.getDay();
+				if (dayStart == 0) dayStart = 7;
+
+
+				calendar += "<tr>";
+				let weekDay = 1;
+				for(let i = 1; i < lastNumberDayinMonth; i++) {
+					while(dayStart > 1) {
+						calendar += "<td></td>";
+						dayStart--;
+						weekDay++;
+					}
+
+					calendar += `<td>${i}</td>`;
+
+					if (weekDay % 7 == 0) {
+						calendar += '</tr>';
+						weekDay = 0;
+						if ((i + 1) < lastNumberDayinMonth) {
+							calendar += '<tr>';
+						}
+					}
+					weekDay++;
+				}
+
+				while(weekDay <= 7) {
+					calendar += "<td></td>";
+					weekDay++;
+				}
+
+				calendar += '</table>';
+
+				elem.innerHTML = calendar;
+			}
+			*/
 
 		</script>
 
 		<!-- //8 -->
-		<div id="clock">
-			<span class="hours">hh</span>:<span class="minutes">mm</span>:<span class="second">ss</span>
+		<div class="clock">
+			<span class="hour">hh</span>:<span class="minute">mm</span>:<span class="second">ss</span>
 		</div>
-		<input type="button" onclick="clockStart()" value="Start">
-		<input type="button" onclick="clockStop()" value="Stop">
+		<input type="button" value="Start" onclick="startClock()">
+		<input type="button" value="Stop" onclick="stopClock()">
+
+		<style>
+			.hour {color:red}
+			.minute {color: green}
+			.second {color: blue}
+		</style>
 
 		<script>
 			'use strict';
 
-			let styleSrt = `
-				<style>
-					.hours {
-						color: red;
-					}
+			let hour = document.querySelector('.hour');
+			let min = document.querySelector('.minute');
+			let sec = document.querySelector('.second');
+			let timerId;
 
-					.minutes {
-						color: green;
-					}
+			function update() {
+				let d = new Date();
+				hour.textContent = zeroToNumber(d.getHours());
+				min.textContent = zeroToNumber(d.getMinutes());
+				sec.textContent = zeroToNumber(d.getSeconds());
+			}
 
-					.second {
-						color: blue;
-					}
-				</style>
-			`;
+			function startClock() {
+				timerId = setInterval(update, 1000);
+				update();
+			}
 
-		let div = document.getElementById('clock');
-		div.insertAdjacentHTML('afterend', styleSrt);
+			function stopClock() {
+				clearInterval(timerId);
+			}
 
-		let timerId;
-		function update(date) {		
-			let divClock = document.getElementById('clock');
+			function zeroToNumber(number) {
+				if (number < 10) {
+					return '0' + number;
+				}
 
-			let hours = date.getHours();
-			if (hours < 10) hours = '0' + hours;
-			let h = divClock.querySelector('span.hours');
-			h.innerText = hours;
-
-			let minutes = date.getMinutes();
-			if (minutes < 10) minutes = '0' + minutes;
-			let m = divClock.querySelector('span.minutes');				
-			m.innerText = minutes;
-
-			let second = date.getSeconds();
-			if (second < 10) second = '0' + second;
-			let s = divClock.querySelector('span.second');
-			s.innerText = second;
-		}
-
-		function clockStart() {
-			let date = new Date;
-			update(date);
-			timerId = setInterval(() => update(new Date), 1000);
-		}
-
-		function clockStop() {
-			clearInterval(timerId);
-			timerId = null;
-		}
+				return number;
+			}
 
 		</script>
 
 		<!-- //9 -->
-		<ul id="ul">
+		<ul id="ul9">
 			<li id="one">1</li>
 			<li id="two">4</li>
 		</ul>
@@ -378,13 +400,14 @@
 		<script>
 			'use strict';
 
-			let one = document.getElementById('one');
-			one.insertAdjacentHTML('afterend', '<li>2</li><li>3</li>');
+			let liText = '<li>2</li><li>3</li>';
+
+			ul9.firstElementChild.insertAdjacentHTML('afterend', liText);
 
 		</script>
 
 		<!-- //10 -->
-		<table id="t10">
+		<table id="table10">
 			<thead>
 			  <tr>
 				<th>Name</th><th>Surname</th><th>Age</th>
@@ -406,25 +429,14 @@
 		<script>
 			'use strict';
 
-			let table = document.getElementById('t10');
-			let trs = table.querySelectorAll('tbody > tr');
-			console.log(trs);
+			let table10 = document.getElementById('table10');
+			let t = table10.tBodies[0];
 
-			let trsArray = Array.from(trs);
-			trsArray.sort((a, b) => (a.cells[0].innerHTML).localeCompare(b.cells[0].innerHTML));
+			let trBody = table10.tBodies[0].children;
 
-			let str = '<tbody>';
-			for (let tr of trsArray) {
-				str += '<tr>';
-				for (let td of tr.cells) {
-					str += '<td>' + td.innerText +'</td>';	
-				}
-				str += '</tr>';
-			}
-			str += '</tbody>';
+			let arrTrs = Array.from(trBody).sort((a,b) => a.cells[0].innerText.localeCompare(b.cells[0].innerText));
 
-			let tableBody = table.querySelector('tbody');
-			tableBody.outerHTML = str;
+			table10.tBodies[0].append(...arrTrs);
 
 		</script>
 
