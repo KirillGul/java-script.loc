@@ -1,0 +1,213 @@
+<!-- //1 -->
+		<style>
+			#field {
+				overflow: hidden;
+				width: 200px;
+				height: 150px;
+				border-top: 10px solid black;
+				border-right: 10px solid gray;
+				border-bottom: 10px solid gray;
+				border-left: 10px solid black;
+				background-color: #00FF00;
+				font: 10px/1.2 monospace;
+			}
+		</style>
+
+		<div id="field">
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+		</div>
+
+		<script>
+			'use strict';
+
+			let field = document.getElementById('field');
+
+			let coords = {};
+
+			//1
+			coords.xTop = field.getBoundingClientRect().x;
+			coords.yTop = field.getBoundingClientRect().y;
+
+			//2
+			coords.xBottom = field.getBoundingClientRect().right;
+			coords.yBottom = field.getBoundingClientRect().bottom;
+
+			//3
+			coords.xTopIn = field.getBoundingClientRect().x - field.clientLeft;
+			coords.yTopIn = field.getBoundingClientRect().y - field.clientTop;
+
+			//4
+			coords.xBottomIn = field.getBoundingClientRect().right - field.clientLeft;
+			coords.yBottomIn = field.getBoundingClientRect().bottom  - field.clientTop;
+
+			//console.log(coords);
+
+		</script>
+
+		<!-- //2 -->
+		<hr>
+		<div>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, eum ut, iusto, velit commodi ullam a vel doloribus unde quas ducimus minima reprehenderit? Necessitatibus vel maxime, qui nemo eos voluptatum.</p>
+		</div>
+		<blockquote>
+			Teacher: Why are you late?<br>
+			Student: There was a man who lost a hundred dollar bill.<br>
+			Teacher: That's nice. Were you helping him look for it?<br>
+			Student: No. I was standing on it.			
+		</blockquote>
+		<div>
+			<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas placeat quos qui inventore maxime nobis quod nemo. Veritatis esse expedita nihil explicabo ex a mollitia soluta vel officiis, perspiciatis voluptates excepturi vitae corrupti facilis rerum quas dolore iure alias adipisci laborum, tempora molestias magni tenetur? Quae, veritatis ea vel harum fugiat iure nemo, eveniet, ut laudantium nulla necessitatibus cumque quibusdam praesentium iusto voluptate delectus dolore. Minima id ducimus error quibusdam recusandae perferendis nihil eligendi delectus quam culpa corrupti aliquid necessitatibus nemo, dolores fuga in! Repellendus debitis dicta neque sunt nemo ratione ex illum accusamus consequatur, rem maxime deserunt, deleniti dignissimos.</p>
+		</div>
+
+		<style>
+			blockquote {
+				border-left: 5px solid rgb(165, 154, 154);
+				margin-left: 100px;
+				padding: 20px;
+				display: inline-block;
+			}
+
+			.note {
+				position: fixed;
+				border: 1px solid grey;
+				padding: 3px;
+				background-color: white;
+			}
+		</style>
+		
+		<script>
+			'use strict';
+			/*
+			let anchor = document.querySelector('blockquote');
+
+			showNote(anchor, 'top', 'note above');
+			showNote(anchor, 'bottom', 'note below');
+			showNote(anchor, 'right', 'note at the right');
+
+			function showNote(anchor, position, html) {
+				let note = document.createElement('div');
+				note.innerHTML = html;
+				note.classList.add('note');
+
+				document.body.append(note);
+	
+				positionAt(anchor, position, note);			
+			}
+
+			function positionAt(anchor, position, elem) {
+				let coords = anchor.getBoundingClientRect();
+
+				switch (position) {
+					case 'top':
+						elem.style.left = coords.left + 'px';
+						elem.style.top = coords.top - elem.offsetHeight + 'px';
+						break;
+					case 'bottom':
+						elem.style.left = coords.left + 'px';
+						elem.style.top = coords.bottom + 'px';
+						break;
+					case 'right':
+						elem.style.left = coords.left + coords.width + 'px';
+						elem.style.top = coords.top + (coords.height / 2) + 'px';
+						break;
+				}
+			}
+			*/
+		</script>
+
+		<!-- //3 --><!-- //4 -->
+		<hr>
+		<div>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate unde neque, perferendis voluptatum odio doloremque amet voluptate laborum, temporibus commodi ipsam facilis quae ipsa debitis saepe facere necessitatibus reiciendis est officia impedit similique! Atque exercitationem enim rerum officiis, quo nostrum fugit corporis esse. Dolorum ab delectus sed enim velit eligendi, perspiciatis consequatur aspernatur voluptate eius ut et ea hic eaque ducimus ex soluta blanditiis suscipit nulla voluptatum quaerat molestiae ipsam. Consectetur alias doloremque error ipsa, neque porro explicabo similique in, nesciunt ex minima, sapiente consequuntur. Aliquid illo nisi magni sint quidem officia vero veniam, inventore voluptatem error qui, excepturi explicabo corporis modi reiciendis optio tempore voluptatum est illum! Asperiores pariatur cumque porro, sequi earum possimus perspiciatis quam officiis quidem. Quam error laudantium quia neque non quae magnam, quasi nobis nostrum dolores voluptate incidunt! Expedita porro sunt quibusdam maiores inventore, excepturi accusantium perferendis unde earum non nihil temporibus. Et voluptatem quas cupiditate facilis voluptas error possimus expedita optio animi quae, quaerat odio non molestias doloribus distinctio minima placeat ex deleniti consequuntur accusantium. Autem cumque blanditiis praesentium asperiores repellat quos dignissimos dolore sit voluptate eaque quo illo eius, dolores quod itaque. Officiis beatae, nam ad repudiandae deleniti numquam nihil commodi aliquam explicabo id praesentium esse, quis reiciendis consequatur fugit quasi similique ab earum sit dolore doloribus ipsam non! Rem repudiandae quaerat molestias sunt provident reiciendis veniam aliquam ipsam aliquid in maxime nemo, quia animi quis, ratione nam consectetur temporibus labore, explicabo consequatur repellendus a voluptatem. Possimus nisi consectetur cum distinctio quo maxime mollitia voluptatibus voluptates esse, ducimus accusamus delectus perspiciatis nihil! Rerum sed nemo, ipsa soluta voluptatum enim in non ducimus amet eligendi vitae illum dolore nesciunt. Omnis nisi perspiciatis nam eligendi cum odio sed ullam. Necessitatibus, a vitae! Magni, numquam asperiores quos voluptas impedit iusto repellat praesentium reiciendis in illum quo ipsum maxime id laudantium suscipit a voluptate minus, magnam sit officia optio aut sapiente veniam exercitationem. Aliquid sint adipisci quae ut unde soluta delectus ipsam inventore fugiat! Pariatur iste non neque deserunt ab excepturi repudiandae. Officiis hic voluptatibus error dolor consectetur fugit quidem nemo veniam quisquam illum, laudantium quas eum autem sed reiciendis voluptatem. Nisi praesentium, mollitia rem architecto possimus nobis nam minima ullam doloremque sed recusandae explicabo laboriosam minus, culpa aliquid facere hic sit, dolore id at excepturi! Sapiente dignissimos ad cupiditate autem eum quibusdam magni natus molestias fuga vero facere porro eligendi iure deserunt, obcaecati sint quas inventore distinctio similique tenetur facilis architecto ipsum doloremque amet. Ex eum ea ut quibusdam dolores minus assumenda quas nam aliquid, sequi omnis sit obcaecati ad ab sunt doloremque impedit non nihil magnam alias quam laborum perferendis, atque mollitia. Tempore quibusdam odio nobis sit magnam, distinctio sed! Animi vitae nesciunt deleniti aliquam sit veniam ut esse pariatur maxime tenetur aperiam illum quas, harum officiis maiores repudiandae asperiores est architecto numquam cum laborum ducimus. Necessitatibus dignissimos porro soluta blanditiis molestias inventore nobis repudiandae eligendi perferendis ratione fuga placeat exercitationem labore optio deserunt qui corporis, repellendus aperiam officiis magnam quaerat fugiat ullam. Recusandae dolores, reiciendis non nam adipisci repellat doloribus perspiciatis autem aspernatur doloremque quo magni consectetur, consequatur tempora, porro dolorem at. Autem temporibus repellendus maxime eum at magnam quibusdam, vitae accusantium dolor consectetur possimus eligendi delectus iure atque voluptates suscipit praesentium tempora rem tempore alias. Quia, expedita necessitatibus optio animi praesentium, enim aspernatur quas nulla commodi minima qui assumenda tenetur debitis. Harum molestiae amet vitae, consectetur deleniti recusandae incidunt cupiditate omnis iusto reiciendis sapiente nulla eos temporibus commodi numquam culpa? Optio consectetur ea magnam incidunt a unde laboriosam aspernatur odit totam quas recusandae nihil sed, exercitationem vitae, laudantium inventore, eveniet ad minima autem quo! Consequuntur, at? Illum magnam nulla, culpa cupiditate quibusdam recusandae molestias? Inventore commodi autem ipsum reprehenderit explicabo totam? Fugiat eos magni quod non dolor, placeat vel delectus minus? Labore facilis perspiciatis nostrum necessitatibus, saepe dolorem excepturi itaque cumque ipsa officia doloremque repellendus quis laudantium, odio placeat ratione? Veniam saepe, repellat perferendis odit sint optio porro quia veritatis dicta, hic cumque, nobis molestiae sapiente in nulla ad debitis aliquam quod cupiditate tenetur. Possimus odit, eaque aperiam quos voluptate, facere nisi provident numquam, qui quis esse. Architecto unde libero est ipsam, tempora doloribus quisquam corporis aliquam fugiat? Ad ea autem deleniti molestiae repudiandae dolor fugit temporibus quae commodi odio dolore sed animi laboriosam distinctio laborum cupiditate facilis, impedit quaerat eius maiores ducimus? Delectus assumenda exercitationem dolores tempora corrupti optio impedit expedita, saepe quas sed sit iusto consectetur, adipisci atque dolore fuga placeat qui repellat ipsam tenetur officiis vero cupiditate. Facere fugiat inventore assumenda maiores incidunt deleniti saepe a sed labore quo ipsum temporibus vel voluptatum consectetur, reiciendis perferendis quam repudiandae numquam, amet mollitia voluptate in ad sapiente! Harum optio quisquam nostrum ipsam eum, praesentium quis esse est quidem natus deleniti quaerat. Odio dolorem reprehenderit corrupti sint iure dolor provident, saepe quas, maiores molestiae accusamus aperiam natus magni sapiente voluptas voluptatibus necessitatibus laboriosam quibusdam eveniet quidem porro esse? Nemo aliquam esse aspernatur illo sint qui porro, accusantium ipsa dolore fuga sapiente quos facere, provident voluptatibus consequatur error dolores enim rerum recusandae quae ad magni dolorem eligendi! Doloribus magni, distinctio architecto omnis quidem ab! Accusantium, quidem necessitatibus commodi consectetur nihil earum excepturi ducimus et magni consequatur facere recusandae ut perferendis. Aperiam deserunt est voluptates quae ut perspiciatis, autem, minus repudiandae ducimus beatae reprehenderit nam facilis ab rerum eos blanditiis, id officiis necessitatibus fuga nulla tenetur fugit! Sequi voluptate est quae, numquam aut voluptatum eos et velit incidunt dolorum voluptatibus ex dolore labore iure expedita explicabo, at officiis consectetur, laborum similique recusandae repellendus tempora. Harum cupiditate officia ullam quae neque velit, accusantium aut minus labore quis atque autem dolor a iusto modi consequatur recusandae culpa. Quas nam id iste expedita fugit, dolore iusto numquam repudiandae, voluptate illum blanditiis voluptatum voluptatibus commodi. Blanditiis magni perferendis, dicta reprehenderit labore laborum corrupti iure corporis in minima natus molestiae incidunt veritatis fuga unde illo ipsam odio temporibus voluptate autem mollitia quibusdam nostrum minus aliquid! Qui, sequi, aperiam nisi omnis laboriosam dolore placeat nulla cumque adipisci sint, ratione eaque consectetur.</p>
+		</div>
+		<blockquote class="threeTask">
+			Teacher: Why are you late?<br>
+			Student: There was a man who lost a hundred dollar bill.<br>
+			Teacher: That's nice. Were you helping him look for it?<br>
+			Student: No. I was standing on it.			
+		</blockquote>
+		<div>
+			<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas placeat quos qui inventore maxime nobis quod nemo. Veritatis esse expedita nihil explicabo ex a mollitia soluta vel officiis, perspiciatis voluptates excepturi vitae corrupti facilis rerum quas dolore iure alias adipisci laborum, tempora molestias magni tenetur? Quae, veritatis ea vel harum fugiat iure nemo, eveniet, ut laudantium nulla necessitatibus cumque quibusdam praesentium iusto voluptate delectus dolore. Minima id ducimus error quibusdam recusandae perferendis nihil eligendi delectus quam culpa corrupti aliquid necessitatibus nemo, dolores fuga in! Repellendus debitis dicta neque sunt nemo ratione ex illum accusamus consequatur, rem maxime deserunt, deleniti dignissimos.</p>
+		</div>
+
+		<style>
+			blockquote.threeTask {
+				border-left: 5px solid rgb(165, 154, 154);
+				margin-left: 100px;
+				padding: 20px;
+				display: inline-block;
+			}
+
+			.note {
+				position: absolute;
+				border: 1px solid grey;
+				padding: 3px;
+				background-color: white;
+			}
+		</style>
+		<script>
+			'use strict';
+
+			let anchorThree = document.querySelector('blockquote.threeTask');
+
+			showNote(anchorThree, 'top-out', 'top-out');
+			showNote(anchorThree, 'top-in', 'top-in');
+			showNote(anchorThree, 'bottom-out', 'bottom-out');
+			showNote(anchorThree, 'bottom-in', 'bottom-in');
+			showNote(anchorThree, 'right-out', 'right-out');
+			showNote(anchorThree, 'right-in', 'right-in');
+
+			function showNote(anchor, position, html) {
+				let note = document.createElement('div');
+				note.innerHTML = html;
+				note.classList.add('note');
+
+				document.body.append(note);
+	
+				positionAt(anchor, position, note);			
+			}
+
+			function positionAt(anchor, position, elem) {
+				let coords = getCoords(anchor);
+
+				switch (position) {
+					case "top-out":
+						elem.style.left = coords.left + "px";
+						elem.style.top = coords.top - elem.offsetHeight + "px";
+						break;
+					case 'bottom-out':
+						elem.style.left = coords.left + 'px';
+						elem.style.top = coords.bottom + 'px';
+						break;
+					case 'right-out':
+						elem.style.left = coords.left + anchor.offsetWidth + 'px';
+						elem.style.top = coords.top + (anchor.offsetHeight / 2) + ((elem.getBoundingClientRect().top - elem.getBoundingClientRect().bottom) / 2) + 'px';
+						break;
+					case "top-in":
+						elem.style.left = coords.left + "px";
+						elem.style.top = coords.top + "px";
+						break;
+					case 'bottom-in':
+						elem.style.left = coords.left + 'px';
+						elem.style.top = coords.bottom - elem.offsetHeight + 'px';
+						break;
+					case 'right-in':
+						elem.style.left = coords.left + anchor.offsetWidth - elem.offsetWidth + 'px';
+						elem.style.top = coords.top + (anchor.offsetHeight / 2) + ((elem.getBoundingClientRect().top - elem.getBoundingClientRect().bottom) / 2) + 'px';
+						break;
+				}
+			}
+
+			function getCoords(elem) {
+				let box = elem.getBoundingClientRect();
+
+				return {
+					top: box.top + window.pageYOffset,
+					right: box.right + window.pageXOffset,
+					bottom: box.bottom + window.pageYOffset,
+					left: box.left + window.pageXOffset
+				};
+			}
+
+		</script>

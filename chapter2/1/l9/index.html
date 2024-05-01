@@ -10,34 +10,29 @@
 		<a href="../index.html" class="www">Назад</a>
 
 		<!-- //1 -->
-		<div id="one" style="top: 100px; left: 50px; height: 150px; width: 150px; overflow: auto; padding: 5px;">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ut, obcaecati nulla non repellendus inventore adipisci quae a reiciendis tenetur ea ab? 
-			Voluptatum repellendus vel sed quae expedita voluptates accusantium itaque fugiat sapiente sit similique velit eos, doloremque, ex id a aperiam perferendis porro. 
-			Ipsam sed rerum minima illo molestiae.
+		<div id="one">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis optio, autem neque possimus vitae nam quia ut unde quaerat necessitatibus, expedita quidem sapiente debitis! Deserunt laudantium minus et atque culpa officiis similique magni illum, aut accusamus omnis repudiandae? Enim, consequatur inventore? Molestias cum dicta enim iste maxime non possimus sed consequatur cumque! Excepturi vero optio nobis nihil quaerat odit vel expedita maxime dolores recusandae quidem delectus sunt, voluptas rerum ratione, molestias aliquam voluptatem ullam et? Est ad debitis rem odio expedita ullam explicabo. Vero impedit, ex tempore labore asperiores quae optio. Ad nam porro corrupti quasi tenetur voluptas deserunt!
 		</div>
+		</main>
+
+		<style>
+			#one {
+			  width: 300px;
+			  height: 200px;
+			  border: 25px solid #E8C48F;
+			  padding: 20px;
+			  overflow: auto;
+			}
+		</style>
 
 		<script>
 			'use strict';
 
-			let div1 = document.getElementById('one');
+			one.scrollTop = 0;
+			console.log('One = ' + one.scrollTop);
 
-			Object.defineProperty(div1, 'scrollBottom', {
-				get() {
-					return this.scrollHeight - this.scrollTop - this.clientHeight;
-				},
-
-				set(value) {
-					this.scrollTop = this.scrollHeight - value - this.clientHeight;
-				},
-			});
-
-			//console.log(div1.scrollTop);
-			//console.log(div1.scrollBottom);
-
-
-			div1.scrollTop = 150;
-			//console.log(div1.scrollTop);
-			//console.log(div1.scrollBottom);
+			one.scrollBottom = one.scrollHeight - one.scrollTop - one.clientHeight;
+			console.log('One = ' + one.scrollBottom);
 
 		</script>
 
@@ -45,48 +40,41 @@
 		<script>
 			'use strict';
 
-			//Мой вариант
-			let scrollWin = div1.offsetWidth - div1.clientWidth - parseFloat(getComputedStyle(document.getElementById('one')).borderLeft);
-			console.log(scrollWin);
+			let elem2 = document.createElement('div');
+			elem2.style.cssText = `
+				overflow: scroll;
+				width: 50px;
+				height: 50px;
+			`;
 
-			//По учебнику повторенный
-			let div2 = document.createElement('div');
+			document.body.append(elem2);
 
-			div2.style.overflow = 'scroll';
-			div2.style.height = '50px';
-			div2.style.width = '50px';
+			console.log(elem2.offsetWidth - elem2.clientWidth);
 
-			document.body.append(div2);
-
-			let widthScroll = div2.offsetWidth - div2.clientWidth;
-
-			div2.remove();
-
-			//alert(widthScroll);
+			elem2.remove();
 
 		</script>
 
 		<!-- //3 -->
-		<div id="field">
-			<img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-		</div>
-
 		<style>
 			#field {
-			  width: 200px;
-			  border: 10px groove black;
-			  background-color: #00FF00;
-			  position: relative;
-			}
-		
-			#ball {
-			  position: absolute;
-			  width: 40px;
-			  height: 40px;
+      			width: 200px;
+      			border: 10px groove black;
+      			background-color: #00FF00;
+      			position: relative;
+    		}
 
-			}
-		  </style>
+    		#ball {
+      			position: absolute;
+				width: 40px;
+				height: 40px;
+    		}
+		</style>
+
+		<div id="field">
+			<img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+		</div>
 
 		<script>
 			'use strict';
@@ -94,9 +82,8 @@
 			let field = document.getElementById('field');
 			let ball = document.getElementById('ball');
 
-			ball.style.top = field.clientHeight / 2  - ball.offsetHeight / 2 + 'px';
-			ball.style.left = field.clientWidth / 2 - ball.offsetWidth / 2 + 'px';
-			console.log(field.offsetHeight);
+			ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';
+			ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px';
 
 		</script>
 
@@ -113,10 +100,6 @@
 				<li>getComputedStyle(elem).width - не которые браузеры по разному возвращают значение (с учётом или без учета полосы прокрутки)</li>
 			</ul>
 		</div>
-
-			
-
-		
 
 	</body>
 </html>
