@@ -10,13 +10,98 @@
 		<a href="../index.html">Назад</a>
 
 		<!-- //1 -->
+		<h3>Task1</h3>
+		<input type="button" id="one" value="Нажмите, чтобы спрятать текст">
+		<div id="text">text</div>
+
 		<script>
 			'use strict';
 
-			
+			let one = document.getElementById('one');
+			one.onclick = function() {
+				let text = document.getElementById('text');
+				text.style.display = 'none';
+			}
+		</script>
 
+		<!-- //2 -->
+		<h3>Task2</h3>
+		<input type="button" id="two" value="Нажмите, чтобы спрятать">
+
+		<script>
+			'use strict';
+
+			document.getElementById('two').onclick = function() {
+				this.hidden = true;
+			};
 		</script>
 		
+		<!-- //3 -->
+		<h3>Task3</h3>
+		<input type="button" id="tree" value="Tree tasks">
+		<script>
+			'use strict';
+
+			let button = document.getElementById('tree');
+		
+			button.addEventListener("click", () => alert("1")); //1
+			button.removeEventListener("click", () => alert("1")); //не сработает
+			button.onclick = () => alert(2); //2
+
+		</script>
+
+		<!-- //4 -->
+		<h3>Task4</h3>
+		<style>
+			#field {
+				position: relative;
+      			width: 200px;
+      			border: 10px groove black;
+      			background-color: #00FF00;
+    		}
+
+    		#ball {
+      			position: absolute;
+				width: 40px;
+				height: 40px;
+				left: 0;
+				top: 0;
+    		}
+		</style>
+
+		<div id="field">
+			<img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+			. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+		</div>
+
+		<script>
+			'use strict';
+
+			let field = document.getElementById('field');
+			let ball = document.getElementById('ball');
+			let coordsField = field.getBoundingClientRect();
+			let coordsBall = ball.getBoundingClientRect();
+		
+			field.onclick = function(event) {				
+		
+				let top = event.y - coordsBall.top - coordsBall.height / 2;
+				let left = event.x - coordsBall.left - coordsBall.width / 2;
+
+				if (top < 0) {
+					top = 0;
+				}
+
+				if (left < 0) {
+					left = 0;
+				}
+
+				console.log('top:' + top + ' left:' + left);
+
+				ball.style.top = top + 'px';
+				ball.style.left = left + 'px';
+			}			
+
+		</script>
 
 	</body>
 </html>
