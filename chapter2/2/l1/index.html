@@ -58,6 +58,8 @@
       			width: 200px;
       			border: 10px groove black;
       			background-color: #00FF00;
+				overflow: hidden;
+      			cursor: pointer;
     		}
 
     		#ball {
@@ -66,6 +68,7 @@
 				height: 40px;
 				left: 0;
 				top: 0;
+				transition: 1s all;
     		}
 		</style>
 
@@ -79,27 +82,70 @@
 
 			let field = document.getElementById('field');
 			let ball = document.getElementById('ball');
+
 			let coordsField = field.getBoundingClientRect();
 			let coordsBall = ball.getBoundingClientRect();
 		
 			field.onclick = function(event) {				
 		
-				let top = event.y - coordsBall.top - coordsBall.height / 2;
-				let left = event.x - coordsBall.left - coordsBall.width / 2;
+				let top = event.clientY - coordsBall.top - coordsBall.height / 2;
+				let left = event.clientX - coordsBall.left - coordsBall.width / 2;
 
 				if (top < 0) {
 					top = 0;
+				//} else if (top > coordsField.bottom - event.y - coordsBall.height / 2) {
+				} else if (top > field.clientHeight - coordsBall.height) {
+					top = field.clientHeight - coordsBall.height;
+					
 				}
 
 				if (left < 0) {
 					left = 0;
+				}else if (left > field.clientWidth - coordsBall.width) {
+					left = field.clientWidth - coordsBall.width;
+					
 				}
-
-				console.log('top:' + top + ' left:' + left);
 
 				ball.style.top = top + 'px';
 				ball.style.left = left + 'px';
 			}			
+
+		</script>
+
+		<!-- //5 -->
+		<h3>Task5</h3>
+		<style>
+			#four.list_close::before {
+				content: '▶ ';
+			}
+			#four.list_open::before {
+				content: "▼ ";
+			}
+			li {
+    			list-style: none; /* Убираем исходные маркеры */ 
+   			}
+			.hidden li {
+				display: none;
+			}
+
+		</style>
+
+		<div id="four" class="list_close">Сладости (нажми меня)!</div>
+		<ul id="menu" class="hidden">
+			<li>Пироженное</li>
+			<li>Пончик</li>
+			<li>Мёд</li>
+		</ul>
+
+		<script>
+			'use strict';
+
+			let four = document.getElementById('four');
+
+			four.onclick = function() {
+				document.getElementById('menu').classList.toggle('hidden');
+				this.classList.toggle("list_open");
+			}
 
 		</script>
 
