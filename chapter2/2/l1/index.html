@@ -93,7 +93,6 @@
 
 				if (top < 0) {
 					top = 0;
-				//} else if (top > coordsField.bottom - event.y - coordsBall.height / 2) {
 				} else if (top > field.clientHeight - coordsBall.height) {
 					top = field.clientHeight - coordsBall.height;
 					
@@ -115,39 +114,146 @@
 		<!-- //5 -->
 		<h3>Task5</h3>
 		<style>
-			#four.list_close::before {
-				content: '▶ ';
-			}
-			#four.list_open::before {
-				content: "▼ ";
-			}
-			li {
-    			list-style: none; /* Убираем исходные маркеры */ 
-   			}
-			.hidden li {
+			.menu ul {
+				margin: 0;
+				list-style: none;
+				padding-left: 20px;
 				display: none;
+			}
+
+			.menu .title::before {
+				content: '▶ ';
+				font-size: 80%;
+				color: green;
+			}
+
+			.menu.open .title::before {
+				content: '▼ ';
+			}
+
+			.menu.open ul {
+				display: block;
 			}
 
 		</style>
 
-		<div id="four" class="list_close">Сладости (нажми меня)!</div>
-		<ul id="menu" class="hidden">
-			<li>Пироженное</li>
-			<li>Пончик</li>
-			<li>Мёд</li>
-		</ul>
+		<div id="four" class="menu">
+			<span class="title">Сладости (нажми меня)!</span>
+			<ul>
+				<li>Пироженное</li>
+				<li>Пончик</li>
+				<li>Мёд</li>
+			</ul>
+		</div>
 
 		<script>
 			'use strict';
 
-			let four = document.getElementById('four');
+			let four = document.querySelector('.menu');
 
 			four.onclick = function() {
-				document.getElementById('menu').classList.toggle('hidden');
-				this.classList.toggle("list_open");
+				this.classList.toggle('open');
 			}
 
 		</script>
 
+		<!-- //6 -->
+		<h3>Task6</h3>
+
+		<style>
+			.articles {
+				width: 500px;
+				height: 400px;
+				overflow: auto;
+			}
+			.article {
+				font-size: 16px;
+				padding: 10px;
+				background-color:lemonchiffon;
+				border-top: 4px solid lightgreen;
+			}
+			h4 {
+				margin: 10px 0;
+				float: left;
+			}
+			.close {
+				float: right;
+				color: brown;
+				cursor: pointer;
+			}
+			.clearfix {
+				content: " ";
+  				clear: both;
+  				display: block;
+			}
+		</style>
+
+		<div class="articles">
+			<div class="article">
+				<h4>Article 1</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptates doloremque laudantium deleniti necessitatibus quam suscipit sed harum fugit magnam. Nihil a necessitatibus, hic nam explicabo ipsum consequatur quae possimus, cum aperiam natus eos sit quis, incidunt ex sunt dignissimos minima facere. In quas obcaecati ex libero iusto deleniti perferendis?</div>
+			</div>
+			<div class="article">
+				<h4>Article 2</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptates doloremque laudantium deleniti necessitatibus quam suscipit sed harum fugit magnam. Nihil a necessitatibus, hic nam explicabo ipsum consequatur quae possimus, cum aperiam natus eos sit quis, incidunt ex sunt dignissimos minima facere. In quas obcaecati ex libero iusto deleniti perferendis?</div>
+			</div>
+			<div class="article">
+				<h4>Article 3</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptates doloremque laudantium deleniti necessitatibus quam suscipit sed harum fugit magnam. Nihil a necessitatibus, hic nam explicabo ipsum consequatur quae possimus, cum aperiam natus eos sit quis, incidunt ex sunt dignissimos minima facere. In quas obcaecati ex libero iusto deleniti perferendis?</div>
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			let close = document.querySelectorAll('.close');
+
+			close.forEach(element => {
+				element.onclick = function() {
+					this.parentElement.remove();
+				}
+			});
+		</script>
+
+		<!-- //7 -->
+		<h3>Task7</h3>
+
+		<style>
+			.carusel {
+				position: relative;
+				width: 500px;
+				border-radius: 10px;
+				background-color:rgb(198, 192, 192);
+			}
+			.carusel li {
+				display: inline;
+				list-style: none;
+			}
+
+		</style>
+
+		<div class="carusel">
+			<span><</span>
+			<ul class="smile">
+				<li><img src="img/1.png"></li>
+				<li><img src="img/2.png"></li>
+				<li><img src="img/3.png"></li>
+				<li><img src="img/4.png"></li>
+				<li><img src="img/5.png"></li>
+				<li><img src="img/6.png"></li>
+				<li><img src="img/7.png"></li>
+				<li><img src="img/8.png"></li>
+				<li><img src="img/9.png"></li>
+				<li><img src="img/10.png"></li>
+			</ul>
+			<span>></span>
+		</div>
+		
 	</body>
 </html>
