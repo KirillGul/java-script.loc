@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Делегирование событий</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<h3>Task1</h3>
+
+		<style>
+			#articles {
+				width: 500px;
+				height: 400px;
+				overflow: auto;
+			}
+			.article {
+				font-size: 16px;
+				padding: 10px;
+				background-color:lemonchiffon;
+				border-top: 4px solid lightgreen;
+			}
+			h4 {
+				margin: 10px 0;
+				float: left;
+			}
+			.close {
+				float: right;
+				color: brown;
+				cursor: pointer;
+			}
+			.clearfix {
+				content: " ";
+  				clear: both;
+  				display: block;
+			}
+		</style>
+
+		<div id="articles">
+			<div class="article">
+				<h4>Лошадь</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Домашняя лошадь - животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</div>
+			</div>
+			<div class="article">
+				<h4>Осёл</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</div>
+			</div>
+			<div class="article">
+				<h4>Кошка</h4>
+				<div class="close">[X]</div>
+				<div class="clearfix"></div>
+				<div>Кошка, или домашняя кошка (лат. Félis silvéstris cátus), — домашнее животное, одно из наиболее популярных (наряду с собакой) "животных-компаньонов". С точки зрения научной систематики, домашняя кошка — млекопитающее семейства кошачьих отряда хищных. Ранее домашнюю кошку нередко рассматривали как отдельный биологический вид.</div>
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			let articles = document.getElementById('articles');
+
+			articles.onclick = function(event) {
+				let target = event.target;
+				if (!target.classList.contains('close')) return;
+
+				let article = target.closest('.article');
+
+				article.remove();
+			}
+		</script>
+		
+	</body>
+</html>

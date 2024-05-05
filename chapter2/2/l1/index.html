@@ -225,35 +225,112 @@
 		<h3>Task7</h3>
 
 		<style>
-			.carusel {
+			#carusel {
 				position: relative;
-				width: 500px;
+				width: 398px;
+				text-align: center;
+				vertical-align: middle;				
 				border-radius: 10px;
-				background-color:rgb(198, 192, 192);
+				background-color:#999;
+				padding: 10px;
 			}
-			.carusel li {
-				display: inline;
+			#carusel .arrow {
+				position: absolute;
+				top: 60px;
+				font-size: 25px;
+				cursor: pointer;				
+			}
+			#carusle .arrow:hover {
+				font-size: 30px;
+			}
+			#carusel .arrow-left {
+				left: 0;
+				transform: rotate(180deg);
+			}
+			#carusel .arrow-right {
+				right: 0;		
+			}
+			.smile {
+				overflow: hidden;
+				height: 130px;
+			}			
+			#carusel ul {
+				transition: 0.5s all;
+				width: 9999px;
+				padding: 0;
+				margin: 0;
+				display: inline-block;
+				overflow: hidden;
+				margin-left: 0px;
+				margin-right: 0px;
+			}
+			#carusel li {
+				display: block;
+				width: 130px;
+				height: 130px;
+				float: left;
 				list-style: none;
+			}
+			#carusel img {
+				display: block;
 			}
 
 		</style>
 
-		<div class="carusel">
-			<span><</span>
-			<ul class="smile">
-				<li><img src="img/1.png"></li>
-				<li><img src="img/2.png"></li>
-				<li><img src="img/3.png"></li>
-				<li><img src="img/4.png"></li>
-				<li><img src="img/5.png"></li>
-				<li><img src="img/6.png"></li>
-				<li><img src="img/7.png"></li>
-				<li><img src="img/8.png"></li>
-				<li><img src="img/9.png"></li>
-				<li><img src="img/10.png"></li>
-			</ul>
-			<span>></span>
+		<div id="carusel">
+			<span class="arrow arrow-left">&#10162;</span>
+			<div class="smile">
+				<ul>
+					<li><img src="img/1.png"></li>
+					<li><img src="img/2.png"></li>
+					<li><img src="img/3.png"></li>
+					<li><img src="img/4.png"></li>
+					<li><img src="img/5.png"></li>
+					<li><img src="img/6.png"></li>
+					<li><img src="img/7.png"></li>
+					<li><img src="img/8.png"></li>
+					<li><img src="img/9.png"></li>
+					<li><img src="img/10.png"></li>
+				</ul>
+			</div>
+			<span class="arrow arrow-right">&#10162;</span>
 		</div>
+
+		<script>
+			'use strict';
+
+			let carusel = document.getElementById('carusel');
+			let leftArrow = document.querySelector('.arrow-left');
+			let rightArrow = document.querySelector('.arrow-right');
+
+			leftArrow.style.top = carusel.clientHeight / 2 - leftArrow.offsetHeight / 2 + 'px';
+			rightArrow.style.top = carusel.clientHeight / 2 - rightArrow.offsetHeight / 2  + 'px';
+
+			let width = 130;
+			let count = 1;
+			let arrowCount = 3;
+
+			let listElems = carusel.querySelectorAll('li');
+			let position = 0;
+
+			leftArrow.onclick = function() {
+				let ul = document.querySelector('.smile ul');				
+				position += width * count;
+				// последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
+				position = Math.min(position, 0)
+      			ul.style.marginLeft = position + 'px';
+			}
+
+			rightArrow.onclick = function() {
+				let ul = document.querySelector('.smile ul');
+				// сдвиг вправо
+				position -= width * count;
+				// последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
+				position = Math.max(position, -width * (listElems.length - arrowCount));
+				ul.style.marginLeft = position + 'px';
+			}
+
+		</script>
 		
 	</body>
 </html>
