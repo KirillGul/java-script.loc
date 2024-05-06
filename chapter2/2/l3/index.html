@@ -75,6 +75,180 @@
 				article.remove();
 			}
 		</script>
+
+		<!-- //2 -->
+		<style>
+			#list {
+				width: 300px;
+				height: 300px;
+				overflow: auto;
+				font-size: 16px;
+			}
+			#list li span:hover {
+				font-weight: bold;
+				cursor: pointer;
+			}
+			.hidden {
+				display: none;
+			}
+
+		</style>
+
+		<div id="list">
+			<ul>
+				<li>
+					<span>Животные</span>
+					<ul>
+						<li>
+							<span>Млекопитающие</span>
+							<ul>
+								<li><span>Коровы</span></li>
+								<li><span>Ослы</span></li>
+								<li><span>Собаки</span></li>
+								<li><span>Тигры</span></li>
+							</ul>
+						</li>
+						<li>
+							<span>Другие</span>
+							<ul>
+								<li><span>Змеи</span></li>
+								<li><span>Птицы</span></li>
+								<li><span>Ящирицы</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span>Рыбы</span>
+					<ul>
+						<li>
+							<span>Аквариумные</span>
+							<ul>
+								<li><span>Гуппи</span></li>
+								<li><span>Скалярии</span></li>
+							</ul>
+						</li>
+						<li>
+							<span>Морские</span>
+							<ul>
+								<li><span>Морская формель</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			'use strict';
+
+			let list = document.getElementById('list');
+
+			list.addEventListener('click', function(event) {
+				let target = event.target;
+
+				if (!this.contains(target)) return;
+
+				let childrenContainer = target.nextElementSibling;
+				
+				//childrenContainer.classList.toggle('hidden');
+				childrenContainer.hidden = !childrenContainer.hidden;
+			});
+
+		</script>
+
+		<!-- //3 -->
+		<style>
+			#grid {
+				margin: 20px;
+				border-collapse: collapse;
+			}
+			#grid th {
+				font-weight: bold;
+			}
+			#grid th:hover {
+				cursor: pointer;
+				background-color: yellow;
+			}
+			#grid th,  #grid td {
+				border: 1px solid;
+				padding: 3px;
+				
+			}
+		</style>
+
+		<table id="grid">
+			<thead>
+				<tr>
+					<th data-type="number">Возраст</th>
+					<th data-type="string">Имя</th>
+			  	</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>5</td>
+					<td>Вася</td>
+			  	</tr>
+			  	<tr>
+					<td>2</td>
+					<td>Петя</td>
+			  	</tr>
+			  	<tr>
+					<td>12</td>
+					<td>Женя</td>
+			  	</tr>
+			  	<tr>
+					<td>9</td>
+					<td>Маша</td>
+			  	</tr>
+			  	<tr>
+					<td>1</td>
+					<td>Илья</td>
+			  	</tr>
+			</tbody>
+		</table>
+
+		<script>
+			'use strict';
+
+			let grid = document.getElementById('grid');
+
+			class TableSort {
+				constructor(elem) {
+					elem.onclick = this.onClick.bind(this); // (*)
+				}
+
+				number(event) {
+					let tBodies = event.currentTarget.tBodies;
+					let rows = Array.from(tBodies[0].rows);
+					rows.sort((a, b) => {
+						let a1 = a.cells[0].innerText;
+						let a2 = b.cells[0].innerText;
+						return a1 - a2;
+					});
+
+					tBodies[0].append(...rows);
+				}
+
+				string(event) {
+					let tBodies = event.currentTarget.tBodies;
+					let rows = Array.from(tBodies[0].rows);
+					rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));
+
+					tBodies[0].append(...rows);
+				}
+
+				onClick(event) {
+					let action = event.target.dataset.type;
+					if (action) {
+						this[action](event);
+					}
+				}
+			}
+
+			new TableSort(grid);
+
+		</script>
 		
 	</body>
 </html>
