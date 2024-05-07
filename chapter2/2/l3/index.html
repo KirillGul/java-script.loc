@@ -1,254 +1,342 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Делегирование событий</title>
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="/style.css">
-	</head>
-	<body>
-		<a href="../index.html">Назад</a>
 
-		<!-- //1 -->
-		<h3>Task1</h3>
+<head>
+	<meta charset="utf-8">
+	<title>Делегирование событий</title>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/style.css">
+</head>
 
-		<style>
-			#articles {
-				width: 500px;
-				height: 400px;
-				overflow: auto;
-			}
-			.article {
-				font-size: 16px;
-				padding: 10px;
-				background-color:lemonchiffon;
-				border-top: 4px solid lightgreen;
-			}
-			h4 {
-				margin: 10px 0;
-				float: left;
-			}
-			.close {
-				float: right;
-				color: brown;
-				cursor: pointer;
-			}
-			.clearfix {
-				content: " ";
-  				clear: both;
-  				display: block;
-			}
-		</style>
+<body>
+	<a href="../index.html">Назад</a>
 
-		<div id="articles">
-			<div class="article">
-				<h4>Лошадь</h4>
-				<div class="close">[X]</div>
-				<div class="clearfix"></div>
-				<div>Домашняя лошадь - животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</div>
-			</div>
-			<div class="article">
-				<h4>Осёл</h4>
-				<div class="close">[X]</div>
-				<div class="clearfix"></div>
-				<div>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</div>
-			</div>
-			<div class="article">
-				<h4>Кошка</h4>
-				<div class="close">[X]</div>
-				<div class="clearfix"></div>
-				<div>Кошка, или домашняя кошка (лат. Félis silvéstris cátus), — домашнее животное, одно из наиболее популярных (наряду с собакой) "животных-компаньонов". С точки зрения научной систематики, домашняя кошка — млекопитающее семейства кошачьих отряда хищных. Ранее домашнюю кошку нередко рассматривали как отдельный биологический вид.</div>
-			</div>
+	<!-- //1 -->
+	<h3>Task1</h3>
+
+	<style>
+		#articles {
+			width: 500px;
+			height: 400px;
+			overflow: auto;
+		}
+
+		.article {
+			font-size: 16px;
+			padding: 10px;
+			background-color: lemonchiffon;
+			border-top: 4px solid lightgreen;
+		}
+
+		h4 {
+			margin: 10px 0;
+			float: left;
+		}
+
+		.close {
+			float: right;
+			color: brown;
+			cursor: pointer;
+		}
+
+		.clearfix {
+			content: " ";
+			clear: both;
+			display: block;
+		}
+
+	</style>
+
+	<div id="articles">
+		<div class="article">
+			<h4>Лошадь</h4>
+			<div class="close">[X]</div>
+			<div class="clearfix"></div>
+			<div>Домашняя лошадь - животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид
+				дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</div>
 		</div>
-
-		<script>
-			'use strict';
-
-			let articles = document.getElementById('articles');
-
-			articles.onclick = function(event) {
-				let target = event.target;
-				if (!target.classList.contains('close')) return;
-
-				let article = target.closest('.article');
-
-				article.remove();
-			}
-		</script>
-
-		<!-- //2 -->
-		<style>
-			#list {
-				width: 300px;
-				height: 300px;
-				overflow: auto;
-				font-size: 16px;
-			}
-			#list li span:hover {
-				font-weight: bold;
-				cursor: pointer;
-			}
-			.hidden {
-				display: none;
-			}
-
-		</style>
-
-		<div id="list">
-			<ul>
-				<li>
-					<span>Животные</span>
-					<ul>
-						<li>
-							<span>Млекопитающие</span>
-							<ul>
-								<li><span>Коровы</span></li>
-								<li><span>Ослы</span></li>
-								<li><span>Собаки</span></li>
-								<li><span>Тигры</span></li>
-							</ul>
-						</li>
-						<li>
-							<span>Другие</span>
-							<ul>
-								<li><span>Змеи</span></li>
-								<li><span>Птицы</span></li>
-								<li><span>Ящирицы</span></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<span>Рыбы</span>
-					<ul>
-						<li>
-							<span>Аквариумные</span>
-							<ul>
-								<li><span>Гуппи</span></li>
-								<li><span>Скалярии</span></li>
-							</ul>
-						</li>
-						<li>
-							<span>Морские</span>
-							<ul>
-								<li><span>Морская формель</span></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
+		<div class="article">
+			<h4>Осёл</h4>
+			<div class="close">[X]</div>
+			<div class="clearfix"></div>
+			<div>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии
+				хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</div>
 		</div>
+		<div class="article">
+			<h4>Кошка</h4>
+			<div class="close">[X]</div>
+			<div class="clearfix"></div>
+			<div>Кошка, или домашняя кошка (лат. Félis silvéstris cátus), — домашнее животное, одно из наиболее
+				популярных (наряду с собакой) "животных-компаньонов". С точки зрения научной систематики, домашняя кошка
+				— млекопитающее семейства кошачьих отряда хищных. Ранее домашнюю кошку нередко рассматривали как
+				отдельный биологический вид.</div>
+		</div>
+	</div>
 
-		<script>
-			'use strict';
+	<script>
+		'use strict';
 
-			let list = document.getElementById('list');
+		let articles = document.getElementById('articles');
 
-			list.addEventListener('click', function(event) {
-				let target = event.target;
+		articles.onclick = function (event) {
+			let target = event.target;
+			if (!target.classList.contains('close')) return;
 
-				if (!this.contains(target)) return;
+			let article = target.closest('.article');
 
-				let childrenContainer = target.nextElementSibling;
-				
-				//childrenContainer.classList.toggle('hidden');
-				childrenContainer.hidden = !childrenContainer.hidden;
-			});
+			article.remove();
+		}
+	</script>
 
-		</script>
+	<!-- //2 -->
+	<style>
+		#list {
+			width: 300px;
+			height: 300px;
+			overflow: auto;
+			font-size: 16px;
+		}
 
-		<!-- //3 -->
-		<style>
-			#grid {
-				margin: 20px;
-				border-collapse: collapse;
+		#list li span:hover {
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+	</style>
+
+	<div id="list">
+		<ul>
+			<li>
+				<span>Животные</span>
+				<ul>
+					<li>
+						<span>Млекопитающие</span>
+						<ul>
+							<li><span>Коровы</span></li>
+							<li><span>Ослы</span></li>
+							<li><span>Собаки</span></li>
+							<li><span>Тигры</span></li>
+						</ul>
+					</li>
+					<li>
+						<span>Другие</span>
+						<ul>
+							<li><span>Змеи</span></li>
+							<li><span>Птицы</span></li>
+							<li><span>Ящирицы</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Рыбы</span>
+				<ul>
+					<li>
+						<span>Аквариумные</span>
+						<ul>
+							<li><span>Гуппи</span></li>
+							<li><span>Скалярии</span></li>
+						</ul>
+					</li>
+					<li>
+						<span>Морские</span>
+						<ul>
+							<li><span>Морская формель</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<script>
+		'use strict';
+
+		let list = document.getElementById('list');
+
+		list.addEventListener('click', function (event) {
+			let target = event.target;
+
+			if (!this.contains(target)) return;
+
+			let childrenContainer = target.nextElementSibling;
+
+			//childrenContainer.classList.toggle('hidden');
+			childrenContainer.hidden = !childrenContainer.hidden;
+		});
+
+	</script>
+
+	<!-- //3 -->
+	<style>
+		#grid {
+			margin: 20px;
+			border-collapse: collapse;
+		}
+
+		#grid th {
+			font-weight: bold;
+		}
+
+		#grid th:hover {
+			cursor: pointer;
+			background-color: yellow;
+		}
+
+		#grid th,
+		#grid td {
+			border: 1px solid;
+			padding: 3px;
+
+		}
+
+	</style>
+
+	<table id="grid">
+		<thead>
+			<tr>
+				<th data-type="number">Возраст</th>
+				<th data-type="string">Имя</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>5</td>
+				<td>Вася</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Петя</td>
+			</tr>
+			<tr>
+				<td>12</td>
+				<td>Женя</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>Маша</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Илья</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script>
+		'use strict';
+
+		let grid = document.getElementById('grid');
+
+		class TableSort {
+			constructor(elem) {
+				elem.onclick = this.onClick.bind(this); // (*)
 			}
-			#grid th {
-				font-weight: bold;
+
+			number(event) {
+				let tBodies = event.currentTarget.tBodies;
+				let rows = Array.from(tBodies[0].rows);
+				rows.sort((a, b) => {
+					let a1 = a.cells[0].innerText;
+					let a2 = b.cells[0].innerText;
+					return a1 - a2;
+				});
+
+				tBodies[0].append(...rows);
 			}
-			#grid th:hover {
-				cursor: pointer;
-				background-color: yellow;
+
+			string(event) {
+				let tBodies = event.currentTarget.tBodies;
+				let rows = Array.from(tBodies[0].rows);
+				rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));
+
+				tBodies[0].append(...rows);
 			}
-			#grid th,  #grid td {
-				border: 1px solid;
-				padding: 3px;
-				
-			}
-		</style>
 
-		<table id="grid">
-			<thead>
-				<tr>
-					<th data-type="number">Возраст</th>
-					<th data-type="string">Имя</th>
-			  	</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>5</td>
-					<td>Вася</td>
-			  	</tr>
-			  	<tr>
-					<td>2</td>
-					<td>Петя</td>
-			  	</tr>
-			  	<tr>
-					<td>12</td>
-					<td>Женя</td>
-			  	</tr>
-			  	<tr>
-					<td>9</td>
-					<td>Маша</td>
-			  	</tr>
-			  	<tr>
-					<td>1</td>
-					<td>Илья</td>
-			  	</tr>
-			</tbody>
-		</table>
-
-		<script>
-			'use strict';
-
-			let grid = document.getElementById('grid');
-
-			class TableSort {
-				constructor(elem) {
-					elem.onclick = this.onClick.bind(this); // (*)
+			onClick(event) {
+				let action = event.target.dataset.type;
+				if (action) {
+					this[action](event);
 				}
-
-				number(event) {
-					let tBodies = event.currentTarget.tBodies;
-					let rows = Array.from(tBodies[0].rows);
-					rows.sort((a, b) => {
-						let a1 = a.cells[0].innerText;
-						let a2 = b.cells[0].innerText;
-						return a1 - a2;
-					});
-
-					tBodies[0].append(...rows);
-				}
-
-				string(event) {
-					let tBodies = event.currentTarget.tBodies;
-					let rows = Array.from(tBodies[0].rows);
-					rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));
-
-					tBodies[0].append(...rows);
-				}
-
-				onClick(event) {
-					let action = event.target.dataset.type;
-					if (action) {
-						this[action](event);
-					}
-				}
 			}
+		}
 
-			new TableSort(grid);
+		new TableSort(grid);
 
-		</script>
-		
-	</body>
+	</script>
+
+	<!-- //4 -->
+	<style>
+		button {
+			position: relative;
+			width: auto;
+			height: auto;
+		}
+
+		.tooltip {
+			position: absolute;
+			padding: 10px;
+			background-color: white;
+			border: 1px solid #999;
+			border-radius: 3px;
+			box-shadow: 5px 5px 6px 0px #999;
+		}
+
+	</style>
+
+	<button data-tooltip="эта подсказка длиннее, чем элемент">Короткая кнопка</button>
+	<button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+	<script>
+		'use strict';
+
+		let tooltipElem;
+
+		function getCoords(elem) {
+			let box = elem.getBoundingClientRect();
+
+			return {
+				top: box.top + window.pageYOffset,
+				right: box.right + window.pageXOffset,
+				bottom: box.bottom + window.pageYOffset,
+				left: box.left + window.pageXOffset
+			};
+		}
+
+		document.addEventListener('mouseover', function (event) {
+			let target = event.target;
+
+			if (!target.dataset.tooltip) return; 
+
+			tooltipElem = document.createElement('div');
+			tooltipElem.classList.add('tooltip');
+			tooltipElem.innerHTML = target.dataset.tooltip;
+			target.after(tooltipElem);
+
+			let coordsTarget = getCoords(target);
+
+			let top = coordsTarget.top - tooltipElem.offsetHeight - 5;
+			if (top < 0) top = coordsTarget.bottom + 5;
+
+			let left = coordsTarget.left;
+			if (left < 0) left = 0;
+
+			tooltipElem.style.left = left + 'px';
+   			tooltipElem.style.top = top + 'px';
+		});
+
+		document.addEventListener('mouseout', function (event) {
+			if (event.target.dataset.tooltip) {
+				tooltipElem.remove();
+				tooltipElem = null;
+			}
+		});
+	</script>
+
+</body>
+
 </html>
