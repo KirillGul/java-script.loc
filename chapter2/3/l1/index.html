@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Введение в браузерные события</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<a href="../index.html">Назад</a>
+
+		<!-- //1 -->
+		<h3>Task1</h3>
+
+		<style>
+			.selected {
+				background-color: rgb(167, 255, 35);
+			}
+			li {
+				cursor: pointer;
+			}
+		</style>
+		
+		<p>Кликни на элемент списка, чтобы выделить его.</p>
+		<ul id="task1">
+			<li>Кристофер Робин</li>
+			<li>Винни Пух</li>
+			<li>Тигра</li>
+			<li>Кенга</li>
+			<li>Кролик. Просто Кролик.</li>
+		</ul>
+
+		<script>
+			'use strict';
+
+			let ul = document.getElementById('task1');
+			let select = [];
+
+			ul.addEventListener('click', function(event) {
+				if (event.target.tagName !== 'LI') return;
+
+				if(!event.button === '0') return;
+
+				if (select.length > 0) {
+					if(!(event.ctrlKey || event.metaKey)) {
+						for(let sel of select) {
+							sel.classList.remove('selected');
+						}
+					} 
+				}
+
+				event.target.classList.toggle('selected');
+
+				select.push(event.target);
+			});
+
+			ul.onmousedown = function() {
+      			return false;
+    		};
+
+		</script>
+		
+	</body>
+</html>
